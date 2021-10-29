@@ -55,3 +55,19 @@ def removeitem(request):
     cursor = connection.cursor()
     cursor.execute("DELETE FROM inventory WHERE name = '{0}' AND dateadded = '{1}';".format(name, dateadded))
     return JsonResponse({})
+
+def get_recipes(request):
+    if request.method != 'GET':
+        return HttpResponse(status=404)
+
+    ingredients = request.args.get('ingredients')
+
+    # TODO: Modify ingredient string as necessary
+
+    os.chdir('../recipe_recommend/')
+    recipes = word2vec_rec.send_recs(ingredients)
+    os.chdir('../app/')
+
+    # TODO: Modify recipes to desired format
+
+    return JsonResponse(recipes)
