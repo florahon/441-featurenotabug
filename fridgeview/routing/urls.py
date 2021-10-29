@@ -20,6 +20,6 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('getinventory/', views.getinventory, name='getinventory'),
-    path('postinventory/', views.postinventory, name='postinventory'),
+    path('additem/', views.additem, name='additem'),
     path('removeitem/', views.removeitem, name='removeitem'),
 ]

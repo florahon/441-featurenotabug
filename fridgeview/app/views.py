@@ -22,7 +22,7 @@ def getinventory(request):
     return JsonResponse(response)
 
 @csrf_exempt
-def postinventory(request):
+def additem(request):
     if request.method != 'POST':
         return HttpResponse(status=400)
     
@@ -36,12 +36,12 @@ def postinventory(request):
         filename = username+str(time.time())+".jpeg"
         fs = FileSystemStorage()
         filename = fs.save(filename, content)
-        imageUrl = fs.url(filename)
+        imageurl = fs.url(filename)
     else:
-        imageUrl = None
+        imageurl = None
 
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO inventory (name, category, expiration, imageUrl, quantity) VALUES ' '(%s, %s, %s, %s, %s);', (name, category, expiration, imageUrl, quantity))
+    cursor.execute('INSERT INTO inventory (name, category, expiration, imageurl, quantity) VALUES ' '(%s, %s, %s, %s, %s);', (name, category, expiration, imageurl, quantity))
     return JsonResponse({})
 
 @csrf_exempt
@@ -50,7 +50,8 @@ def removeitem(request):
         return HttpResponse(status=400)
 
     name = request.POST.get('name')
-    
+    dateadded = request.POST.get('dateadded')
+
     cursor = connection.cursor()
-    cursor.execute('DELETE FROM inventory WHERE name = {};'.format('name'))
+    cursor.execute("DELETE FROM inventory WHERE name = '{0}' AND dateadded = '{1}';".format(name, dateadded))
     return JsonResponse({})
