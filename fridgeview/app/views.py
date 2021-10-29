@@ -64,9 +64,9 @@ def get_recipes(request):
 
     # TODO: Modify ingredient string as necessary
 
-    os.chdir('../recipe_recommend/whatscooking-deployment/')
+    os.chdir('../recipe_recommend/')
     recipes = word2vec_rec.send_recs(ingredients)
-    os.chdir('../../app/')
+    os.chdir('../app/')
 
     # TODO: Modify recipes to desired format
 
