@@ -22,4 +22,5 @@ urlpatterns = [
     path('getinventory/', views.getinventory, name='getinventory'),
     path('additem/', views.additem, name='additem'),
     path('removeitem/', views.removeitem, name='removeitem'),
+    path('get_recipes', views.get_recipes, name='get_recipes'),
 ]
