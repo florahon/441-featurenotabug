@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ListViewController: UITableViewController, AddItemVCDelegate {
+class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelegate {
+    
 
     var items = [Item]()
+    var selection: Item?
     let CellIdentifier = "Cell Identifier"
 
     override func viewDidLoad() {
@@ -18,11 +20,12 @@ class ListViewController: UITableViewController, AddItemVCDelegate {
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
             
         // Create Add Button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ListViewController.addItem(sender:)))
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ListViewController.addItem(sender:)))
         
         //edit button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(ListViewController.editItems(sender:)))
-            
+        let edit = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(ListViewController.editItems(sender:)))
+        
+        navigationItem.rightBarButtonItems = [add, edit]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,6 +33,11 @@ class ListViewController: UITableViewController, AddItemVCDelegate {
             if let navigationController = segue.destination as? UINavigationController,
                let addItemViewController = navigationController.viewControllers.first as? AddItemViewController {
                 addItemViewController.delegate = self
+            }
+        } else if segue.identifier == "EditViewController" {
+            if let editViewController = segue.destination as? EditViewController, let item = selection {
+                editViewController.delegate = self
+                editViewController.item = item
             }
         }
     }
@@ -47,6 +55,17 @@ class ListViewController: UITableViewController, AddItemVCDelegate {
         
         // Load Items
         loadItems()
+    }
+    
+    func controller(controller: EditViewController, didUpdateItem item: Item) {
+        // Fetch Index for Item
+            if let index = items.index(of: item) {
+                // Update Table View
+                tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+            }
+             
+            // Save Items
+            saveItems()
     }
     
     private func loadItems() {
@@ -86,15 +105,28 @@ class ListViewController: UITableViewController, AddItemVCDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Dequeue Reusable Cell
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
-        
+         
         // Fetch Item
         let item = items[indexPath.row]
-        
+         
         // Configure Table View Cell
         cell.textLabel?.text = item.name
-
+        cell.accessoryType = .detailDisclosureButton
+         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        // Fetch Item
+        let item = items[indexPath.row]
+         
+        // Update Selection
+        selection = item
+         
+        // Perform Segue
+        performSegue(withIdentifier: "EditViewController", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

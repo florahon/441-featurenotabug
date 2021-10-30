@@ -41,11 +41,46 @@
                     <navigationItem key="navigationItem" title="FridgeView" id="zcB-BC-5gn"/>
                     <connections>
                         <segue destination="Qnp-SE-MHs" kind="presentation" identifier="AddItemViewController" id="Z1v-2W-Iv6"/>
+                        <segue destination="s1V-Dm-Sbl" kind="show" identifier="EditViewController" id="HIy-dk-NSB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYM-vI-337" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="624.63768115942037" y="-105.13392857142857"/>
+        </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="82h-ql-Bdg">
+            <objects>
+                <viewController id="s1V-Dm-Sbl" customClass="EditViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gN9-PT-S72">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qt" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-cs-ee2">
+                                <rect key="frame" x="327" y="96" width="67" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDF-aq-Nu0">
+                                <rect key="frame" x="20" y="96" width="239" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1hU-vh-JYn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hwb-6r-lbc"/>
+                    <connections>
+                        <outlet property="nTextField" destination="TDF-aq-Nu0" id="JwW-hy-OZm"/>
+                        <outlet property="quantityTextField" destination="a2D-cs-ee2" id="rdC-xU-W0L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aae-sx-N7i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="637.68115942028987" y="620.75892857142856"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="Rci-Ku-c8m">
