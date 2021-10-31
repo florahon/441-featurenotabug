@@ -56,6 +56,21 @@ def removeitem(request):
     cursor.execute("DELETE FROM inventory WHERE name = '{0}' AND dateadded = '{1}';".format(name, dateadded))
     return JsonResponse({})
 
+@csrf_exempt
+def updateitem(request):
+    if request.method != 'POST':
+        return HttpResponse(status=400)
+
+    name = request.POST.get('name')
+    dateadded = request.POST.get('dateadded')
+    category = request.POST.get('category')
+    expiration = request.POST.get('expiration')
+    quantity = request.POST.get('quantity')
+
+    cursor = connection.cursor()
+    cursor.execute("UPDATE inventory SET category = '{0}', expiration = '{1}', imageurl = '{3}', quantity = '{4}' WHERE name = '{5}' AND dateadded = '{6}';".format(category, expiration, imageurl, quantity, name, dateadded))
+    return JsonResponse({})
+
 def get_recipes(request):
     if request.method != 'GET':
         return HttpResponse(status=404)
