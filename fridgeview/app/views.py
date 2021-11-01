@@ -108,10 +108,8 @@ def scan_receipt(request):
     receipt = request.args.get("receipt")
     # receipt = '../static/admin/img/grocery_receipt1'
 
-    # Send items back to client
     text = pytesseract.image_to_string(Image.open(receipt))
     pricePattern = r'([0-9]+\.[0-9]+)'
-    # show the output of filtering out *only* the line items in the
     # loop over each of the line items in the OCR'd receipt
     items = []
     for row in text.split("\n"):
@@ -126,7 +124,7 @@ def scan_receipt(request):
                     item = (split_text[i])
             if (len(item) > 0):
                 items.append(item.lower())
-
+    # Remove the items that involve some total, either 'total' or 'subtotal tax total'
     if (len(items) >= 3):
         if ('total' in items[-3]):
             items = items[:-3]
