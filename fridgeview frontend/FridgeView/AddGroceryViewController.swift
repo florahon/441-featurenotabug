@@ -9,8 +9,8 @@ class AddGroceryViewController: UIViewController {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var quantityTextField: UITextField!
     
-//    @IBOutlet var button: UIButton!
-//    @IBOutlet var button2: UIButton!
+    @IBOutlet var button: UIButton!
+    @IBOutlet var imageView: UIImageView!
     
     
     var delegate: AddGroceryVCDelegate?
@@ -18,7 +18,17 @@ class AddGroceryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-       
+    
+    @IBAction func camera(_ sender: Any){
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let cameraView = UIImagePickerController()
+            cameraView.delegate = self as?
+            UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            cameraView.sourceType = .camera
+            self.present(cameraView, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }

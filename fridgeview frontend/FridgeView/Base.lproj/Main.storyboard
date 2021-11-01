@@ -149,10 +149,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7a-GQ-yz3">
-                                <rect key="frame" x="174" y="540" width="67" height="31"/>
+                                <rect key="frame" x="145" y="540" width="125" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
                                 <connections>
                                     <action selector="camera:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="IVK-jB-wBo"/>
                                 </connections>
@@ -259,8 +259,8 @@
                     <navigationItem key="navigationItem" title="FridgeView" id="u8w-HZ-GRC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="QlA-Kg-JJc" kind="show" id="AfF-SN-cbg"/>
-                        <segue destination="ZRN-UY-yZu" kind="presentation" id="kU9-FB-Hbc"/>
+                        <segue destination="QlA-Kg-JJc" kind="show" identifier="EditGroceryViewController" id="AfF-SN-cbg"/>
+                        <segue destination="ZRN-UY-yZu" kind="presentation" identifier="AddGroceryViewController" id="kU9-FB-Hbc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLn-98-0t4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -301,10 +301,10 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRS-J8-LqN">
-                                <rect key="frame" x="174" y="540" width="67" height="31"/>
+                                <rect key="frame" x="145" y="540" width="125" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
                                 <connections>
                                     <action selector="camera:" destination="kA7-xs-c3S" eventType="touchUpInside" id="WaY-36-tzD"/>
                                 </connections>
