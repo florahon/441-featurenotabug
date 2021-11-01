@@ -300,21 +300,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRS-J8-LqN">
-                                <rect key="frame" x="145" y="540" width="125" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
-                                <connections>
-                                    <action selector="camera:" destination="kA7-xs-c3S" eventType="touchUpInside" id="WaY-36-tzD"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7U-fT-xhn">
-                                <rect key="frame" x="87" y="591" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rea-h8-j9P">
-                                <rect key="frame" x="21" y="58" width="272" height="34"/>
+                                <rect key="frame" x="20" y="67" width="272" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -336,8 +323,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="button" destination="eRS-J8-LqN" id="1ec-Vh-A36"/>
-                        <outlet property="imageView" destination="R7U-fT-xhn" id="b2W-yv-BuB"/>
                         <outlet property="nameTextField" destination="rea-h8-j9P" id="vRO-Ae-Gia"/>
                         <outlet property="quantityTextField" destination="50U-ec-Koa" id="v51-68-sut"/>
                     </connections>
