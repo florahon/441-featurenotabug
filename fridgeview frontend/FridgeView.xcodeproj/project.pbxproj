@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0ECE83F1272F5FFD008FA06C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */; };
 		0ECE8416272F9225008FA06C /* EditGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */; };
 		0ECE8417272F9225008FA06C /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8413272F9225008FA06C /* GroceryListViewController.swift */; };
 		0ECE8418272F9225008FA06C /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */; };
@@ -24,7 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroceryViewController.swift; sourceTree = "<group>"; };
 		0ECE8413272F9225008FA06C /* GroceryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
 		0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				E39C741F272C872B00A83CB7 /* AddItemViewController.swift */,
 				E39C7421272C88A200A83CB7 /* ListViewController.swift */,
 				E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */,
-				0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */,
 			);
 			path = FridgeView;
 			sourceTree = "<group>";
@@ -169,7 +166,6 @@
 				0ECE8416272F9225008FA06C /* EditGroceryViewController.swift in Sources */,
 				E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */,
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
-				0ECE83F1272F5FFD008FA06C /* CameraViewController.swift in Sources */,
 				0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
