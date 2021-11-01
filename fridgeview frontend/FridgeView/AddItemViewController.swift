@@ -11,6 +11,7 @@ class AddItemViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var button: UIButton!
+    @IBOutlet var button2: UIButton!
     
     
     var delegate: AddItemVCDelegate?
