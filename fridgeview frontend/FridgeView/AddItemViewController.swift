@@ -1,17 +1,16 @@
 import UIKit
 
 protocol AddItemVCDelegate {
-    func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int, andExprDate expr_date: String)
+    func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int)
 }
 
 class AddItemViewController: UIViewController {
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var quantityTextField: UITextField!
-    @IBOutlet var expr_dateTextField: UITextField!
     
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var button: UIButton!
-    @IBOutlet var button2: UIButton!
     
     
     var delegate: AddItemVCDelegate?
@@ -47,9 +46,9 @@ class AddItemViewController: UIViewController {
     }
 
     @IBAction func save(sender: UIBarButtonItem) {
-        if let name = nameTextField.text, let quantityAsString = quantityTextField.text, let quantity = Int(quantityAsString), let expr_date = expr_dateTextField.text {
+        if let name = nameTextField.text, let quantityAsString = quantityTextField.text, let quantity = Int(quantityAsString) {
                 // Notify Delegate
-            delegate?.controller(controller: self, didSaveItemWithName: name, andQuantity: quantity, andExprDate: expr_date)
+            delegate?.controller(controller: self, didSaveItemWithName: name, andQuantity: quantity)
                 
                 // Dismiss View Controller
             dismiss(animated: true, completion: nil)

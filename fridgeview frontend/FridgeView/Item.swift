@@ -13,12 +13,11 @@ class Item: NSObject, NSCoding {
     var quantity: Int = 0
     var expr_date: String = ""
     
-    init(name: String, quantity: Int, expr_date: String) {
+    init(name: String, quantity: Int) {
         super.init()
         
         self.name = name
         self.quantity = quantity
-        self.expr_date = expr_date
     }
     
     func encode(with coder: NSCoder) {

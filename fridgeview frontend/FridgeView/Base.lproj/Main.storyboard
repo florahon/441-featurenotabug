@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,13 +19,80 @@
                     </tabBar>
                     <connections>
                         <segue destination="fCw-H3-D4J" kind="relationship" relationship="viewControllers" id="mjf-gh-VkE"/>
-                        <segue destination="vnn-rl-rkN" kind="relationship" relationship="viewControllers" id="DeN-5I-e6V"/>
-                        <segue destination="FHG-dW-O3d" kind="relationship" relationship="viewControllers" id="O1m-G2-umX"/>
+                        <segue destination="lJ8-Zb-bY5" kind="relationship" relationship="viewControllers" id="g1Q-8k-oBJ"/>
+                        <segue destination="LSb-ph-hHt" kind="relationship" relationship="viewControllers" id="QZo-gj-SLg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="108-cU-hFV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1016" y="-105"/>
+        </scene>
+        <!--Recipes-->
+        <scene sceneID="SpQ-36-xfl">
+            <objects>
+                <navigationController id="lJ8-Zb-bY5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Recipes" id="fbp-GD-X27"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0vI-ID-Kcp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zav-gU-ftS" kind="relationship" relationship="rootViewController" id="Cml-tL-z18"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Byp-xv-Mjl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-319" y="-850"/>
+        </scene>
+        <!--FridgeView-->
+        <scene sceneID="KDy-er-MFl">
+            <objects>
+                <viewController id="Pjx-iV-cdi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JcS-gj-N1j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grocery List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIf-u9-GXG">
+                                <rect key="frame" x="34" y="116" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="c5V-xH-ECV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="FridgeView" id="ooJ-he-MwC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8PL-uD-Rlf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-365.21739130434787" y="-1526.1160714285713"/>
+        </scene>
+        <!--FrigeView-->
+        <scene sceneID="17R-Mf-onW">
+            <objects>
+                <viewController id="zav-gU-ftS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tB9-Lf-buN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJA-7o-fRI">
+                                <rect key="frame" x="36" y="119" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7rV-oi-IfC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="FrigeView" id="H0s-Tm-Dar"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nDS-RG-Qeo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="711.59420289855075" y="-1019.1964285714286"/>
         </scene>
         <!--FridgeView-->
         <scene sceneID="NiX-SL-STk">
@@ -35,13 +102,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inventory List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gVM-Jt-UzO">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <connections>
                             <outlet property="dataSource" destination="FOZ-Eh-KT7" id="gJN-62-5VT"/>
                             <outlet property="delegate" destination="FOZ-Eh-KT7" id="ygU-sg-lJ0"/>
@@ -57,7 +117,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYM-vI-337" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="584" y="-105"/>
+            <point key="canvasLocation" x="624.63768115942037" y="-105.13392857142857"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="82h-ql-Bdg">
@@ -79,19 +139,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiration Date (MM/DD/YYYY)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aW4-0a-Hhm">
-                                <rect key="frame" x="20" y="138" width="239" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="date-time"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1hU-vh-JYn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="hwb-6r-lbc"/>
                     <connections>
-                        <outlet property="expr_dateTextField" destination="aW4-0a-Hhm" id="ycX-vo-xj9"/>
                         <outlet property="nTextField" destination="TDF-aq-Nu0" id="JwW-hy-OZm"/>
                         <outlet property="quantityTextField" destination="a2D-cs-ee2" id="rdC-xU-W0L"/>
                     </connections>
@@ -109,65 +162,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AKC-ct-L9d">
-                                <rect key="frame" x="20" y="88" width="272" height="34"/>
+                                <rect key="frame" x="20" y="67" width="272" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiration Date (MM/DD/YYYY)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99C-DV-NnP">
-                                <rect key="frame" x="20" y="134" width="259" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="date-time"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Item Manually:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-B2-A46">
-                                <rect key="frame" x="20" y="56" width="146" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scan Reciept:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8E-wI-Moh">
-                                <rect key="frame" x="20" y="176" width="105" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7a-GQ-yz3">
-                                <rect key="frame" x="151" y="211" width="112" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
-                                <connections>
-                                    <action selector="camera:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="IVK-jB-wBo"/>
-                                </connections>
-                            </button>
-<<<<<<< HEAD
-=======
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scan Food Items:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvK-3p-X7J">
-                                <rect key="frame" x="20" y="301" width="132" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnF-Ya-BvU">
-                                <rect key="frame" x="151" y="342" width="112" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
-                                <connections>
-                                    <action selector="camera:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="arc-ce-khL"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qt" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYy-ye-Xuc">
-                                <rect key="frame" x="331" y="88" width="63" height="34"/>
+                                <rect key="frame" x="334" y="67" width="63" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
->>>>>>> 29aec19b3b69010b378424ff5dc6a9d4d0d562d8
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7a-GQ-yz3">
+                                <rect key="frame" x="174" y="540" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="camera:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="IVK-jB-wBo"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYd-Eh-mgB">
+                                <rect key="frame" x="87" y="591" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="muZ-6U-b1l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -186,11 +204,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="button" destination="b7a-GQ-yz3" id="DXl-fW-778"/>
-<<<<<<< HEAD
-=======
-                        <outlet property="button2" destination="gnF-Ya-BvU" id="iZH-91-Lgq"/>
-                        <outlet property="expr_dateTextField" destination="99C-DV-NnP" id="hsh-Sc-9Qg"/>
->>>>>>> 29aec19b3b69010b378424ff5dc6a9d4d0d562d8
+                        <outlet property="imageView" destination="gYd-Eh-mgB" id="JZu-id-Jfh"/>
                         <outlet property="nameTextField" destination="AKC-ct-L9d" id="Wh7-Ev-2is"/>
                         <outlet property="quantityTextField" destination="dYy-ye-Xuc" id="nYe-VO-s8d"/>
                     </connections>
@@ -199,11 +213,11 @@
             </objects>
             <point key="canvasLocation" x="2286.9565217391305" y="-105.13392857142857"/>
         </scene>
-        <!--Home-->
+        <!--Inventory List-->
         <scene sceneID="rQ3-3V-pCN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fCw-H3-D4J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="T9j-SI-OoL"/>
+                    <tabBarItem key="tabBarItem" title="Inventory List" id="T9j-SI-OoL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SYw-2I-bay">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -217,48 +231,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MHM-Jw-qD1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-286.95652173913044" y="-105.13392857142857"/>
-        </scene>
-        <!--Recipes-->
-        <scene sceneID="x9s-fr-dAr">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i06-ng-cyv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController id="FHG-dW-O3d" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recipes" id="Bdd-IQ-VaT"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gkz-f9-Deq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="3nK-sp-Nnn" kind="relationship" relationship="rootViewController" id="2QD-Mb-H3s"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="223" y="-848"/>
-        </scene>
-        <!--FridgeView-->
-        <scene sceneID="eSc-Ns-yqt">
-            <objects>
-                <viewController id="3nK-sp-Nnn" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Dyx-ds-wxp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgT-ej-Tod">
-                                <rect key="frame" x="31" y="98" width="61" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Ygz-tP-2IM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="FridgeView" id="8rm-kt-UvH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TEH-ts-9PN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1263.768115942029" y="-1285.0446428571429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4cb-Mc-N9A">
@@ -279,54 +251,26 @@
             <point key="canvasLocation" x="1376.8115942028987" y="-105.13392857142857"/>
         </scene>
         <!--Grocery List-->
-        <scene sceneID="2r0-Ku-vlO">
+        <scene sceneID="cmC-yV-NJS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cQn-Dt-iHb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController id="vnn-rl-rkN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Grocery List" id="b8Y-RM-ngi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cq8-U1-1d4">
+                <navigationController id="LSb-ph-hHt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Grocery List" id="cvp-Gh-AfU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZFR-aP-liJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dQ6-Tm-iCr" kind="relationship" relationship="rootViewController" id="vFR-WQ-jWg"/>
+                        <segue destination="Pjx-iV-cdi" kind="relationship" relationship="rootViewController" id="Shf-Wb-8mb"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlB-HD-5EL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1157" y="-1082"/>
-        </scene>
-        <!--FridgeView-->
-        <scene sceneID="zgc-wT-Huq">
-            <objects>
-                <viewController id="dQ6-Tm-iCr" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XEk-RZ-nlZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grocery List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhP-O9-hSg">
-                                <rect key="frame" x="39" y="88" width="93" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="vm5-Y9-iyP"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="FridgeView" id="tpH-Mx-f1R"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e4X-aI-fpz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-411.59420289855075" y="-1388.1696428571429"/>
+            <point key="canvasLocation" x="-1325" y="-1244"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
