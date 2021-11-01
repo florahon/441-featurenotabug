@@ -259,8 +259,8 @@
                     <navigationItem key="navigationItem" title="FridgeView" id="u8w-HZ-GRC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="ZRN-UY-yZu" kind="presentation" id="qpZ-VN-CTe"/>
                         <segue destination="QlA-Kg-JJc" kind="show" id="AfF-SN-cbg"/>
+                        <segue destination="ZRN-UY-yZu" kind="presentation" id="kU9-FB-Hbc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLn-98-0t4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -272,13 +272,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZRN-UY-yZu" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="VyH-f8-CM8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PVj-OJ-SNZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="kA7-xs-c3S" kind="presentation" id="MRv-b9-Q84"/>
+                        <segue destination="kA7-xs-c3S" kind="relationship" relationship="rootViewController" id="AwG-oA-21m"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNH-LO-5eh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
