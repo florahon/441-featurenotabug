@@ -16,6 +16,10 @@
 		E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C741F272C872B00A83CB7 /* AddItemViewController.swift */; };
 		E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C7421272C88A200A83CB7 /* ListViewController.swift */; };
 		E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */; };
+		E3B66F91272F88F000DF9FD8 /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F90272F88F000DF9FD8 /* GroceryItem.swift */; };
+		E3B66F93272F899E00DF9FD8 /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F92272F899E00DF9FD8 /* AddGroceryViewController.swift */; };
+		E3B66F95272F8A1600DF9FD8 /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F94272F8A1600DF9FD8 /* GroceryListViewController.swift */; };
+		E3B66F97272F8ACF00DF9FD8 /* EditGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F96272F8ACF00DF9FD8 /* EditGroceryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		E39C741F272C872B00A83CB7 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		E39C7421272C88A200A83CB7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		E3B66F90272F88F000DF9FD8 /* GroceryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
+		E3B66F92272F899E00DF9FD8 /* AddGroceryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
+		E3B66F94272F8A1600DF9FD8 /* GroceryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
+		E3B66F96272F8ACF00DF9FD8 /* EditGroceryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroceryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,10 @@
 				E39C741F272C872B00A83CB7 /* AddItemViewController.swift */,
 				E39C7421272C88A200A83CB7 /* ListViewController.swift */,
 				E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */,
+				E3B66F90272F88F000DF9FD8 /* GroceryItem.swift */,
+				E3B66F92272F899E00DF9FD8 /* AddGroceryViewController.swift */,
+				E3B66F94272F8A1600DF9FD8 /* GroceryListViewController.swift */,
+				E3B66F96272F8ACF00DF9FD8 /* EditGroceryViewController.swift */,
 			);
 			path = FridgeView;
 			sourceTree = "<group>";
@@ -149,10 +161,14 @@
 			files = (
 				E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */,
 				E3041F6D272C7A9800990225 /* Item.swift in Sources */,
+				E3B66F95272F8A1600DF9FD8 /* GroceryListViewController.swift in Sources */,
 				E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */,
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
+				E3B66F93272F899E00DF9FD8 /* AddGroceryViewController.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
+				E3B66F97272F8ACF00DF9FD8 /* EditGroceryViewController.swift in Sources */,
+				E3B66F91272F88F000DF9FD8 /* GroceryItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
