@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ECE83F1272F5FFD008FA06C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */; };
 		E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F57272C75BA00990225 /* AppDelegate.swift */; };
 		E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F59272C75BA00990225 /* SceneDelegate.swift */; };
 		E3041F61272C75BB00990225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3041F60272C75BB00990225 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		E3041F54272C75BA00990225 /* FridgeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3041F57272C75BA00990225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3041F59272C75BA00990225 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				E39C741F272C872B00A83CB7 /* AddItemViewController.swift */,
 				E39C7421272C88A200A83CB7 /* ListViewController.swift */,
 				E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */,
+				0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */,
 			);
 			path = FridgeView;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				E3041F6D272C7A9800990225 /* Item.swift in Sources */,
 				E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */,
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
+				0ECE83F1272F5FFD008FA06C /* CameraViewController.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
 			);
@@ -304,6 +308,7 @@
 				DEVELOPMENT_TEAM = AVSLM7BJQV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FridgeView/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -332,6 +337,7 @@
 				DEVELOPMENT_TEAM = AVSLM7BJQV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FridgeView/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
