@@ -94,17 +94,17 @@ def get_recipes(request):
     os.chdir('../app/')
 
     # TODO: Modify recipes to desired format
+    response = {
+        "recipes": recipes,
+    }
 
-    return JsonResponse(recipes)
+    return JsonResponse(response)
 
 @csrf_exempt
 def scan_receipt(request):
     if request.method != 'GET':
         return HttpResponse(status=400)
 
-    # Call to library to get the required items from the image:
-
-    # TODO: Figurre out how the image will be passed in
     receipt = request.args.get("receipt")
     # receipt = '../static/admin/img/grocery_receipt1'
 
