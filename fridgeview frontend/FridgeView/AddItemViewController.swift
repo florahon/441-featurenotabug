@@ -19,18 +19,27 @@ class AddItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.backgroundColor = .secondarySystemBackground
-        
-        button.backgroundColor = .systemBlue
-        button.setTitle("Take Picture", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+//        imageView.backgroundColor = .secondarySystemBackground
+//
+//        button.backgroundColor = .systemBlue
+//        button.setTitle("Take Picture", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
     }
     
-    @IBAction func didTapButton(){
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        present(picker, animated: true)
+//    @IBAction func didTapButton(sender: UIBarButtonItem){
+//        let picker = UIImagePickerController()
+//        picker.sourceType = .camera
+//        picker.delegate = self
+//        present(picker, animated: true)
+//    }
+    @IBAction func camera(_ sender: Any){
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let cameraView = UIImagePickerController()
+            cameraView.delegate = self as?
+            UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            cameraView.sourceType = .camera
+            self.present(cameraView, animated: true, completion: nil)
+        }
     }
 
     @IBAction func cancel(sender: UIBarButtonItem) {
@@ -49,19 +58,19 @@ class AddItemViewController: UIViewController {
 
 }
 
-extension AddItemViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion:nil)
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as?
-                UIImage else{
-                    return
-                }
-        imageView.image = image
-    }
-    
-}
+//extension AddItemViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+//
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        picker.dismiss(animated: true, completion:nil)
+//        guard let image = info[UIImagePickerController.InfoKey.originalImage] as?
+//                UIImage else{
+//                    return
+//                }
+//        imageView.image = image
+//    }
+//
+//}
