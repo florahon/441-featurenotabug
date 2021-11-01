@@ -8,7 +8,6 @@ class AddGroceryViewController: UIViewController {
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var quantityTextField: UITextField!
-    @IBOutlet var expr_dateTextField: UITextField!
     
     @IBOutlet var button: UIButton!
     @IBOutlet var button2: UIButton!

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0ECE83F1272F5FFD008FA06C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */; };
+		0ECE8416272F9225008FA06C /* EditGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */; };
+		0ECE8417272F9225008FA06C /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8413272F9225008FA06C /* GroceryListViewController.swift */; };
+		0ECE8418272F9225008FA06C /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */; };
+		0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8415272F9225008FA06C /* GroceryItem.swift */; };
 		E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F57272C75BA00990225 /* AppDelegate.swift */; };
 		E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F59272C75BA00990225 /* SceneDelegate.swift */; };
 		E3041F61272C75BB00990225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3041F60272C75BB00990225 /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 
 /* Begin PBXFileReference section */
 		0ECE83F0272F5FFD008FA06C /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroceryViewController.swift; sourceTree = "<group>"; };
+		0ECE8413272F9225008FA06C /* GroceryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
+		0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
+		0ECE8415272F9225008FA06C /* GroceryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
 		E3041F54272C75BA00990225 /* FridgeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3041F57272C75BA00990225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3041F59272C75BA00990225 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +72,10 @@
 		E3041F56272C75BA00990225 /* FridgeView */ = {
 			isa = PBXGroup;
 			children = (
+				0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */,
+				0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */,
+				0ECE8415272F9225008FA06C /* GroceryItem.swift */,
+				0ECE8413272F9225008FA06C /* GroceryListViewController.swift */,
 				E3041F57272C75BA00990225 /* AppDelegate.swift */,
 				E3041F59272C75BA00990225 /* SceneDelegate.swift */,
 				E3041F5D272C75BA00990225 /* Main.storyboard */,
@@ -150,11 +162,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ECE8418272F9225008FA06C /* AddGroceryViewController.swift in Sources */,
 				E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */,
 				E3041F6D272C7A9800990225 /* Item.swift in Sources */,
+				0ECE8417272F9225008FA06C /* GroceryListViewController.swift in Sources */,
+				0ECE8416272F9225008FA06C /* EditGroceryViewController.swift in Sources */,
 				E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */,
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
 				0ECE83F1272F5FFD008FA06C /* CameraViewController.swift in Sources */,
+				0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
 			);
