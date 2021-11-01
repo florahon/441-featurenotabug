@@ -19,11 +19,80 @@
                     </tabBar>
                     <connections>
                         <segue destination="fCw-H3-D4J" kind="relationship" relationship="viewControllers" id="mjf-gh-VkE"/>
+                        <segue destination="lJ8-Zb-bY5" kind="relationship" relationship="viewControllers" id="g1Q-8k-oBJ"/>
+                        <segue destination="LSb-ph-hHt" kind="relationship" relationship="viewControllers" id="QZo-gj-SLg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="108-cU-hFV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1016" y="-105"/>
+        </scene>
+        <!--Recipes-->
+        <scene sceneID="SpQ-36-xfl">
+            <objects>
+                <navigationController id="lJ8-Zb-bY5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Recipes" id="fbp-GD-X27"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0vI-ID-Kcp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zav-gU-ftS" kind="relationship" relationship="rootViewController" id="Cml-tL-z18"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Byp-xv-Mjl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-319" y="-850"/>
+        </scene>
+        <!--FridgeView-->
+        <scene sceneID="KDy-er-MFl">
+            <objects>
+                <viewController id="Pjx-iV-cdi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JcS-gj-N1j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grocery List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIf-u9-GXG">
+                                <rect key="frame" x="34" y="116" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="c5V-xH-ECV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="FridgeView" id="ooJ-he-MwC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8PL-uD-Rlf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-365.21739130434787" y="-1526.1160714285713"/>
+        </scene>
+        <!--FrigeView-->
+        <scene sceneID="17R-Mf-onW">
+            <objects>
+                <viewController id="zav-gU-ftS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tB9-Lf-buN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJA-7o-fRI">
+                                <rect key="frame" x="36" y="119" width="61" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7rV-oi-IfC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="FrigeView" id="H0s-Tm-Dar"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nDS-RG-Qeo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="711.59420289855075" y="-1019.1964285714286"/>
         </scene>
         <!--FridgeView-->
         <scene sceneID="NiX-SL-STk">
@@ -144,11 +213,11 @@
             </objects>
             <point key="canvasLocation" x="2286.9565217391305" y="-105.13392857142857"/>
         </scene>
-        <!--Item-->
+        <!--Inventory List-->
         <scene sceneID="rQ3-3V-pCN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fCw-H3-D4J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="T9j-SI-OoL"/>
+                    <tabBarItem key="tabBarItem" title="Inventory List" id="T9j-SI-OoL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SYw-2I-bay">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -180,6 +249,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ab-I1-fUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1376.8115942028987" y="-105.13392857142857"/>
+        </scene>
+        <!--Grocery List-->
+        <scene sceneID="cmC-yV-NJS">
+            <objects>
+                <navigationController id="LSb-ph-hHt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Grocery List" id="cvp-Gh-AfU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZFR-aP-liJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Pjx-iV-cdi" kind="relationship" relationship="rootViewController" id="Shf-Wb-8mb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlB-HD-5EL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1325" y="-1244"/>
         </scene>
     </scenes>
     <resources>
