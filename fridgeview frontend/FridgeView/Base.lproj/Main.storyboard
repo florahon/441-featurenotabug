@@ -245,7 +245,7 @@
         <!--FridgeView-->
         <scene sceneID="TAm-h5-prP">
             <objects>
-                <tableViewController id="Wun-ky-LCb" customClass="ListViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Wun-ky-LCb" customClass="GroceryListViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="N5h-YZ-Q7x">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -278,17 +278,17 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="kA7-xs-c3S" kind="relationship" relationship="rootViewController" id="0Rr-kC-85q"/>
+                        <segue destination="kA7-xs-c3S" kind="presentation" id="MRv-b9-Q84"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNH-LO-5eh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="607" y="-1795"/>
         </scene>
-        <!--Add Item View Controller-->
+        <!--Add Grocery View Controller-->
         <scene sceneID="RI0-0g-LWM">
             <objects>
-                <viewController id="kA7-xs-c3S" customClass="AddItemViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kA7-xs-c3S" customClass="AddGroceryViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fi9-qm-NhC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -325,30 +325,30 @@
                     <navigationItem key="navigationItem" id="6hv-Cs-XXW">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="O0w-39-cu2">
                             <connections>
-                                <action selector="cancelWithSender:" destination="kA7-xs-c3S" id="7oA-F3-Qf6"/>
+                                <action selector="cancelWithSender:" destination="kA7-xs-c3S" id="jeV-fG-Qyu"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="WXe-oI-mk0">
                             <connections>
-                                <action selector="saveWithSender:" destination="kA7-xs-c3S" id="oYn-qP-sXG"/>
+                                <action selector="saveWithSender:" destination="kA7-xs-c3S" id="i1J-gc-4q8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="button" destination="eRS-J8-LqN" id="1ec-Vh-A36"/>
                         <outlet property="imageView" destination="R7U-fT-xhn" id="b2W-yv-BuB"/>
-                        <outlet property="nameTextField" destination="rea-h8-j9P" id="rGv-qv-Wye"/>
-                        <outlet property="quantityTextField" destination="50U-ec-Koa" id="w67-sf-HYQ"/>
+                        <outlet property="nameTextField" destination="rea-h8-j9P" id="vRO-Ae-Gia"/>
+                        <outlet property="quantityTextField" destination="50U-ec-Koa" id="v51-68-sut"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4P-aC-89Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1596" y="-1816"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--Edit Grocery View Controller-->
         <scene sceneID="Quf-E8-WH1">
             <objects>
-                <viewController id="QlA-Kg-JJc" customClass="EditViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QlA-Kg-JJc" customClass="EditGroceryViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EPG-e2-N04">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
