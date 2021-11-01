@@ -146,9 +146,9 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         }
     }
     
-    func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int, andExprDate expr_date: String) {
+    func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int) {
         // Create Item
-        let item = Item(name: name, quantity: quantity, expr_date: expr_date)
+        let item = Item(name: name, quantity: quantity)
         
         // Add Item to Items
         items.append(item)

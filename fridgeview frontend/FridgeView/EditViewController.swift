@@ -14,7 +14,7 @@ protocol EditVCDelegate {
 class EditViewController: UIViewController {
  
     @IBOutlet var nTextField: UITextField!
-    @IBOutlet var expr_dateTextField: UITextField!
+    
     @IBOutlet var quantityTextField: UITextField!
      
     var item: Item!
@@ -29,15 +29,13 @@ class EditViewController: UIViewController {
         
         nTextField.text = item.name
         quantityTextField.text = "\(item.quantity)"
-        expr_dateTextField.text = item.expr_date
     }
      
     @objc func save(sender: UIBarButtonItem) {
-        if let name = nTextField.text, let quantityAsString = quantityTextField.text, let quantity = Int(quantityAsString), let expr_date = expr_dateTextField.text {
+        if let name = nTextField.text, let quantityAsString = quantityTextField.text, let quantity = Int(quantityAsString) {
             // Update Item
             item.name = name
             item.quantity = quantity
-            item.expr_date = expr_date
              
             // Notify Delegate
             delegate?.controller(controller: self, didUpdateItem: item)
