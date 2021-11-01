@@ -10,8 +10,8 @@ class AddItemViewController: UIViewController {
     @IBOutlet var quantityTextField: UITextField!
     @IBOutlet var expr_dateTextField: UITextField!
     
-    @IBOutlet var imageView: UIImageView!
     @IBOutlet var button: UIButton!
+    @IBOutlet var button2: UIButton!
     
     
     var delegate: AddItemVCDelegate?
