@@ -7,6 +7,10 @@ import os, time
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+# Google Vision API imports
+from google.cloud import vision
+import io
+
 import pytesseract
 import re
 try:
@@ -135,3 +139,47 @@ def scan_receipt(request):
     response['items'] = items
 
     return JsonResponse(response)
+
+@csrf_exempt
+def scan_image(request):
+    """
+    Scans image from the request and returns the contents of the image
+    Example JsonResponse response:
+    {
+        "tomato": 2,
+        "banana": 3,
+        ...
+    }
+    """
+    image_content = request.args.get("image")
+    # Instantiates a client
+    client = vision.ImageAnnotatorClient()
+
+    # Loads the image into memory
+    with io.open(image_content, 'rb') as image_file:
+        content = image_file.read()
+
+    image = vision.Image(content=content)
+
+    # Performs label detection on the image file
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+
+    # TODO: make sure the label is a food item
+    # This is necessary since if the user takes a picture
+    # of food on a table, for example, the vision API will return 
+    # "table" as a label
+
+    # Store the counts of each label
+    labels_map = {}
+    for label in labels:
+        labels_map[label] += 1
+
+    # Create the response:
+    response = {}
+    for key in labels_map:
+        response[key] = labels_map[key]
+
+    return JsonResponse(response)
+    
+    

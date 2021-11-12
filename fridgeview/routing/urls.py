@@ -24,4 +24,5 @@ urlpatterns = [
     path('removeitem/', views.removeitem, name='removeitem'),
     path('updateitem/', views.updateitem, name='updateitem'),
     path('get_recipes', views.get_recipes, name='get_recipes'),
+    path('scan_image', views.scan_image, name='scan_image')
 ]
