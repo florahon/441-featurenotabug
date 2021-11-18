@@ -6,6 +6,7 @@ import json
 import os, time
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from nltk.corpus import wordnet as wn
 
 # Google Vision API imports
 from google.cloud import vision
@@ -154,7 +155,6 @@ def scan_image(request):
     image_content = request.args.get("image")
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
-
     # Loads the image into memory
     with io.open(image_content, 'rb') as image_file:
         content = image_file.read()
@@ -170,10 +170,18 @@ def scan_image(request):
     # of food on a table, for example, the vision API will return 
     # "table" as a label
 
+    # Obtain food_names list from wordnet
+    food = wn.synset('food.n.02')
+    hypo = lambda s: s.hyponyms()
+    food_names = set()
+    for synset in wn.synsets('food'):
+        food_names |= set([b.replace("_", " ").lower() for s in synset.closure(hypo) for b in s.lemma_names()])
+
     # Store the counts of each label
     labels_map = {}
     for label in labels:
-        labels_map[label] += 1
+        if (label.lower() in food_names):
+            labels_map[label] += 1
 
     # Create the response:
     response = {}
