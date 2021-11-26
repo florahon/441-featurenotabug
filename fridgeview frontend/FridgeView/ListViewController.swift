@@ -18,7 +18,9 @@ class Category {
 
 class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelegate {
     
-    var categories = [Category]()
+    struct Inventory{
+        static var categories = [Category]()
+    }
     var selection: Item?
     let CellIdentifier = "Cell Identifier"
 
@@ -27,10 +29,10 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         // Do any additional setup after loading the view.
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         
-        categories.append(Category.init(categoryName: "Produce"))
-        categories.append(Category.init(categoryName: "Dairy"))
-        categories.append(Category.init(categoryName: "Protein"))
-        categories.append(Category.init(categoryName: "Other"))
+        Inventory.categories.append(Category.init(categoryName: "Produce"))
+        Inventory.categories.append(Category.init(categoryName: "Dairy"))
+        Inventory.categories.append(Category.init(categoryName: "Protein"))
+        Inventory.categories.append(Category.init(categoryName: "Other"))
             
         // Create Add Button
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ListViewController.addItem(sender:)))
@@ -72,7 +74,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
     
     func controller(controller: EditViewController, didUpdateItem item: Item) {
         var count = 0
-        for cat in categories{
+        for cat in Inventory.categories{
             // Fetch Index for Item
             if let index = cat.item.index(of: item) {
                     // Update Table View
@@ -87,7 +89,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
     private func loadItems() {
             if let filePath = pathForItems(), FileManager.default.fileExists(atPath: filePath) {
                 if var archivedItems = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Item] {
-                    for cat in categories{
+                    for cat in Inventory.categories{
                         archivedItems = archivedItems + cat.item
                     }
                 }
@@ -106,7 +108,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
     
     private func saveItems() {
         if let filePath = pathForItems() {
-            for cat in categories{
+            for cat in Inventory.categories{
                 NSKeyedArchiver.archiveRootObject(cat.item, toFile: filePath)
             }
         }
@@ -116,12 +118,13 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return categories.count
+        return Inventory.categories.count
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("edit")
         // Fetch Item
-        let item = categories[indexPath.section].item[indexPath.row]
+        let item = Inventory.categories[indexPath.section].item[indexPath.row]
          
         // Update Selection
         selection = item
@@ -137,7 +140,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete Item from Items
-            categories[indexPath.section].item.remove(at: indexPath.row)
+            Inventory.categories[indexPath.section].item.remove(at: indexPath.row)
              
             // Update Table View
             tableView.deleteRows(at: [indexPath], with: .right)
@@ -152,13 +155,13 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
              
            let lbl = UILabel(frame: CGRect(x: 15, y: 0, width: view.frame.width - 15, height: 40))
            lbl.font = UIFont.systemFont(ofSize: 20)
-           lbl.text = categories[section].categoryName
+           lbl.text = Inventory.categories[section].categoryName
            view.addSubview(lbl)
            return view
          }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories[section].item.count
+        return Inventory.categories[section].item.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,7 +169,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
          
         // Fetch Item
-        let item = categories[indexPath.section].item[indexPath.row]
+        let item = Inventory.categories[indexPath.section].item[indexPath.row]
          
         // Configure Table View Cell
         cell.textLabel?.text = item.name
@@ -187,7 +190,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         let item = Item(name: name, quantity: quantity, expr_date: expr_date)
         var cur_cat = 0
         var count = 0
-        for cat in categories{
+        for cat in Inventory.categories{
             if cat.categoryName == category{
                 (cat.item).append(item)
                 cur_cat = count
@@ -195,12 +198,28 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
             count = count + 1
         }
         
-        tableView.insertRows(at: [IndexPath(row: (categories[cur_cat].item.count - 1), section: cur_cat)], with: .automatic)
+        tableView.insertRows(at: [IndexPath(row: (Inventory.categories[cur_cat].item.count - 1), section: cur_cat)], with: .automatic)
         
         saveItems()
     }
 
     /*
+     let selectItemViewController =
+     self.storyboard!.instantiateViewController(withIdentifier: "SelectItemViewController")
+     as! SelectItemViewController
+
+         // pass the relevant data to the new sub-ViewController
+     var cur_cat2 = 0
+     var count2 = 0
+     for cat in selectItemViewController.categories{
+         if cat.categoryName == category{
+             (cat.item).append(item)
+             cur_cat2 = count2
+         }
+         count2 = count2 + 1
+     }
+     
+     selectItemViewController.tableView.insertRows(at: [IndexPath(row: (selectItemViewController.categories[cur_cat2].item.count - 1), section: cur_cat2)], with: .automatic)
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 

@@ -76,10 +76,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uuA-8h-HFg">
-                                <rect key="frame" x="111" y="267" width="194" height="31"/>
+                                <rect key="frame" x="107" y="267" width="202" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Select Items from Iventory"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Select Items from Inventory"/>
+                                <connections>
+                                    <segue destination="xCi-hj-c5P" kind="presentation" identifier="" id="t5k-Jc-Cmu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7rV-oi-IfC"/>
@@ -92,9 +95,44 @@
             <point key="canvasLocation" x="711.59420289855075" y="-1019.1964285714286"/>
         </scene>
         <!--FridgeView-->
+        <scene sceneID="xBJ-Vp-kq4">
+            <objects>
+                <tableViewController storyboardIdentifier="SelectItemViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NnY-cu-Cyr" customClass="SelectItemViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="4ia-KK-IcS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="NnY-cu-Cyr" id="YfN-F7-kyH"/>
+                            <outlet property="delegate" destination="NnY-cu-Cyr" id="Yis-zD-xl4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="FridgeView" id="53R-aJ-mca"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nf9-Ky-RoG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2681" y="-1019"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NMs-gh-Rpa">
+            <objects>
+                <navigationController id="xCi-hj-c5P" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a7v-Ek-Fom">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="NnY-cu-Cyr" kind="relationship" relationship="rootViewController" id="DmO-Jr-RFC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wtU-33-Q75" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684" y="-1019"/>
+        </scene>
+        <!--FridgeView-->
         <scene sceneID="NiX-SL-STk">
             <objects>
-                <tableViewController id="FOZ-Eh-KT7" customClass="ListViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FOZ-Eh-KT7" customClass="ListViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="z9a-6l-mxx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
