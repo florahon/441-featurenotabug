@@ -17,6 +17,7 @@
 		E3041F64272C75BB00990225 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3041F62272C75BB00990225 /* LaunchScreen.storyboard */; };
 		E3041F6B272C75F200990225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3041F5D272C75BA00990225 /* Main.storyboard */; };
 		E3041F6D272C7A9800990225 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F6C272C7A9700990225 /* Item.swift */; };
+		E312CC94274DC99100DE8F20 /* SelectItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */; };
 		E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C741F272C872B00A83CB7 /* AddItemViewController.swift */; };
 		E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C7421272C88A200A83CB7 /* ListViewController.swift */; };
 		E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */; };
@@ -35,6 +36,7 @@
 		E3041F63272C75BB00990225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3041F65272C75BB00990225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3041F6C272C7A9700990225 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemViewController.swift; sourceTree = "<group>"; };
 		E39C741F272C872B00A83CB7 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		E39C7421272C88A200A83CB7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				E39C741F272C872B00A83CB7 /* AddItemViewController.swift */,
 				E39C7421272C88A200A83CB7 /* ListViewController.swift */,
 				E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */,
+				E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */,
 			);
 			path = FridgeView;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
 				0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
+				E312CC94274DC99100DE8F20 /* SelectItemViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
