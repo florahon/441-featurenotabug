@@ -86,7 +86,7 @@ def updateitem(request):
                     "dateadded = '{6}';".format(category, expiration, imageurl, quantity, name, dateadded))
     return JsonResponse({})
 
-def get_recipes(request):
+def getrecipes(request):
     if request.method != 'GET':
         return HttpResponse(status=404)
 
@@ -95,6 +95,7 @@ def get_recipes(request):
     # TODO: Modify ingredient string as necessary
 
     os.chdir('../recipe_recommend/')
+    import word2vec_rec
     recipes = word2vec_rec.send_recs(ingredients)
     os.chdir('../app/')
 
@@ -106,7 +107,7 @@ def get_recipes(request):
     return JsonResponse(response)
 
 @csrf_exempt
-def scan_receipt(request):
+def scanreceipt(request):
     if request.method != 'GET':
         return HttpResponse(status=400)
 
@@ -142,7 +143,7 @@ def scan_receipt(request):
     return JsonResponse(response)
 
 @csrf_exempt
-def scan_image(request):
+def scanimage(request):
     """
     Scans image from the request and returns the contents of the image
     Example JsonResponse response:
