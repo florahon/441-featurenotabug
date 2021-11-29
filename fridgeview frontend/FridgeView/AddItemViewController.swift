@@ -35,6 +35,9 @@ class AddItemViewController: UIViewController {
         tableView.delegate = self
                 tableView.dataSource = self
                 tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
+        
+//        var dateString1 = String(month!) + "/" + String(day!) + "/" + String(year!)
+//        expr_dateTextField.text = dateString1
 //        imageView.backgroundColor = .secondarySystemBackground
 //
 //        button.backgroundColor = .systemBlue
@@ -65,9 +68,13 @@ class AddItemViewController: UIViewController {
     @IBAction func save(sender: UIBarButtonItem) {
         if let name = nameTextField.text, let quantityAsString = quantityTextField.text, let quantity = Int(quantityAsString), let expr_date = expr_dateTextField.text {
                 // Notify Delegate
+            
             category = selectedButton.currentTitle!
+            
             delegate?.controller(controller: self, didSaveItemWithName: name, andQuantity: quantity, andExpr_Date: expr_date, andCategory: category)
-                
+                 
+            
+            
                 // Dismiss View Controller
             dismiss(animated: true, completion: nil)
             }
@@ -99,12 +106,51 @@ class AddItemViewController: UIViewController {
                 self.transparentView.alpha = 0
                 self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
             }, completion: nil)
+            
+            let currentDate = Date()
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+//            let dateString = formatter.string(from: currentDateTime)
+            
+            
+            
+//            let components = dateString.components(separatedBy: "/")
+//            var month = Int(components[0])
+//            var day = Int(components[1])
+//            var year = Int(components[2])
+            
+            if (selectedButton.currentTitle == "Produce"){
+                print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                let dateString = formatter.string(from:modifiedDate)
+                expr_dateTextField.text = dateString
+            }
+            if (selectedButton.currentTitle == "Protein"){
+                print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 21, to: currentDate)!
+                let dateString = formatter.string(from:modifiedDate)
+                expr_dateTextField.text = dateString
+            }
+            if (selectedButton.currentTitle == "Dairy"){
+                print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 14, to: currentDate)!
+                let dateString = formatter.string(from:modifiedDate)
+                expr_dateTextField.text = dateString
+            }
+            if (selectedButton.currentTitle == "Other"){
+                print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 28, to: currentDate)!
+                let dateString = formatter.string(from:modifiedDate)
+                expr_dateTextField.text = dateString
+            }
         }
 
     @IBAction func onClickSelectCategory(_ sender: Any) {
             dataSource = ["Produce", "Dairy", "Protein", "Other"]
             selectedButton = btnSelectCategory
+            print("testing before the if statement")
             addTransparentView(frames: btnSelectCategory.frame)
+        
         }
 }
 extension AddItemViewController: UITableViewDelegate, UITableViewDataSource {
