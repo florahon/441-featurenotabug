@@ -6,17 +6,22 @@
 //
 
 import UIKit
-
-class SelectItemViewController: UITableViewController {
+var rowsWhichAreChecked = [NSIndexPath]()
+class SelectItemViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    struct SelectedItems{
+        static var selected = [Item]()
+    }
     
     var categories = [Category]()
     let CellIdentifier = "Cell Identifier"
-    var selected = [Category]()
 
-
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        tableView.allowsMultipleSelection = true
         
         categories.append(Category.init(categoryName: "Produce"))
         categories.append(Category.init(categoryName: "Dairy"))
@@ -35,7 +40,6 @@ class SelectItemViewController: UITableViewController {
                     if cat.categoryName == select_cat.categoryName{
                         (select_cat.item).append(i)
                         count = count + 1
-                        tableView.insertRows(at: [IndexPath(row: (categories[cur_cat].item.count - 1), section: cur_cat)], with: .automatic)
                         print(1)
                     }
                 }
@@ -43,8 +47,6 @@ class SelectItemViewController: UITableViewController {
             cur_cat = cur_cat + 1
             count = 0
         }
-            
-        // navigationItem.rightBarButtonItems = [add, edit]
     }
     
     required init?(coder decoder: NSCoder) {
@@ -82,21 +84,21 @@ class SelectItemViewController: UITableViewController {
         return nil
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return categories.count
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         loadItems()
         saveItems()
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
              
            let lbl = UILabel(frame: CGRect(x: 15, y: 0, width: view.frame.width - 15, height: 40))
@@ -106,47 +108,56 @@ class SelectItemViewController: UITableViewController {
            return view
          }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories[section].item.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue Reusable Cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! Cell
          
         // Fetch Item
         let item = categories[indexPath.section].item[indexPath.row]
          
         // Configure Table View Cell
-        cell.textLabel?.text = item.name
-        cell.accessoryType = .
-         
+        cell.label.text = item.name
+        let isRowChecked = rowsWhichAreChecked.contains(indexPath as NSIndexPath)
+        cell.check.isHidden = true
         return cell
     }
     
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
-        cell.accessoryType = .checkmark
-        
-        return cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath as IndexPath) as! Cell
+        cell.contentView.backgroundColor = UIColor.white
+        // cross checking for checked rows
+        cell.check.isHidden = false
+        print(categories[indexPath.section].item[indexPath.row].name)
+        SelectedItems.selected.append(categories[indexPath.section].item[indexPath.row])
     }
-
-    func resetChecks() {
-        for i in 0..<tableView.numberOfSections {
-            for j in 0..<tableView.numberOfRows(inSection: i) {
-                if let cell = tableView.cellForRow(at: IndexPath(row: j, section: i)) {
-                    cell.accessoryType = .none
-                }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath as IndexPath) as! Cell
+        cell.check.isHidden = true
+        var count = 0
+        for s in SelectedItems.selected{
+            if s.expr_date == categories[indexPath.section].item[indexPath.row].expr_date && s.name == categories[indexPath.section].item[indexPath.row].name &&
+                s.quantity == categories[indexPath.section].item[indexPath.row].quantity{
+                SelectedItems.selected.remove(at: count)
             }
+            count = count + 1
         }
+        // remove the indexPath from rowsWhichAreCheckedArray
+        if let checkedItemIndex = rowsWhichAreChecked.firstIndex(of: indexPath as NSIndexPath){
+            rowsWhichAreChecked.remove(at: checkedItemIndex)
+        }
+        
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-           return 40
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+           return 60
     }
          
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           return 40
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+           return 60
     }
     
 }
