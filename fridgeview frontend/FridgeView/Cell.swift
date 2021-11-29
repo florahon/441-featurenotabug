@@ -10,8 +10,8 @@ import UIKit
 
 class Cell: UITableViewCell {
 
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var checkBox: CheckBoxButton!
+    @IBOutlet var label: UILabel!
+    @IBOutlet var check: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,8 +19,6 @@ class Cell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-       
     }
   
 

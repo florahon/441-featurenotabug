@@ -18,7 +18,6 @@
 		E3041F6B272C75F200990225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3041F5D272C75BA00990225 /* Main.storyboard */; };
 		E3041F6D272C7A9800990225 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F6C272C7A9700990225 /* Item.swift */; };
 		E312CC94274DC99100DE8F20 /* SelectItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */; };
-		E32BF83527517D9A00CF7B34 /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF83327517D9A00CF7B34 /* CheckBoxButton.swift */; };
 		E32BF83627517D9A00CF7B34 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF83427517D9A00CF7B34 /* Cell.swift */; };
 		E32BF84A2751802800CF7B34 /* CheckBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = E32BF8492751802800CF7B34 /* CheckBoxChecked.png */; };
 		E32BF84C2754133400CF7B34 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF84B2754133400CF7B34 /* RecipeViewController.swift */; };
@@ -41,7 +40,6 @@
 		E3041F65272C75BB00990225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3041F6C272C7A9700990225 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemViewController.swift; sourceTree = "<group>"; };
-		E32BF83327517D9A00CF7B34 /* CheckBoxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		E32BF83427517D9A00CF7B34 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		E32BF83F27517E2700CF7B34 /* CheckBoxUnChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckBoxUnChecked.png; sourceTree = "<group>"; };
 		E32BF8492751802800CF7B34 /* CheckBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckBoxChecked.png; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				E32BF83427517D9A00CF7B34 /* Cell.swift */,
-				E32BF83327517D9A00CF7B34 /* CheckBoxButton.swift */,
 				0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */,
 				0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */,
 				0ECE8415272F9225008FA06C /* GroceryItem.swift */,
@@ -189,7 +186,6 @@
 				0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
 				E312CC94274DC99100DE8F20 /* SelectItemViewController.swift in Sources */,
-				E32BF83527517D9A00CF7B34 /* CheckBoxButton.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

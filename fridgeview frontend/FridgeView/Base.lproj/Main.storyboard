@@ -481,37 +481,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMg-Y4-emf">
-                                                    <rect key="frame" x="88" y="13" width="306" height="33"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="Gi9-pP-CcC"/>
-                                                        <constraint firstAttribute="width" constant="306" id="PsY-fD-MtJ"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="df7-oj-vk5">
+                                                    <rect key="frame" x="20" y="19" width="295" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSR-8U-2Po" customClass="CheckBoxButton" customModule="BoxDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="11" y="11" width="35" height="35.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="35" id="D67-vM-EXe"/>
-                                                        <constraint firstAttribute="height" constant="35" id="U3I-Df-xUe"/>
-                                                    </constraints>
-                                                    <state key="normal" image="CheckBoxChecked"/>
-                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="QD9-zx-bBV">
+                                                    <rect key="frame" x="323" y="-10" width="82" height="82"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="xMg-Y4-emf" firstAttribute="trailing" secondItem="FDp-OG-MGB" secondAttribute="trailingMargin" id="3P1-Pd-xek"/>
-                                                <constraint firstItem="xMg-Y4-emf" firstAttribute="top" secondItem="FDp-OG-MGB" secondAttribute="topMargin" constant="2" id="Z5M-pZ-M52"/>
-                                                <constraint firstItem="sSR-8U-2Po" firstAttribute="leading" secondItem="FDp-OG-MGB" secondAttribute="leading" constant="11" id="ZzY-zF-jcg"/>
-                                                <constraint firstItem="sSR-8U-2Po" firstAttribute="top" secondItem="FDp-OG-MGB" secondAttribute="top" constant="11" id="hJx-th-nPG"/>
-                                                <constraint firstAttribute="bottom" secondItem="sSR-8U-2Po" secondAttribute="bottom" constant="12.5" id="haP-2F-8D5"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="xMg-Y4-emf" secondAttribute="bottom" constant="2" id="qR3-EZ-igV"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="checkBox" destination="sSR-8U-2Po" id="fKd-kF-vzV"/>
-                                            <outlet property="label" destination="xMg-Y4-emf" id="j78-d4-NH3"/>
+                                            <outlet property="check" destination="QD9-zx-bBV" id="a8K-S4-aD2"/>
+                                            <outlet property="label" destination="df7-oj-vk5" id="cnM-cB-XD0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -543,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAs-4Z-GlD" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2583" y="-1019"/>
+            <point key="canvasLocation" x="2582.608695652174" y="-1019.1964285714286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qsw-w4-TIc">
@@ -583,7 +568,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CheckBoxChecked" width="35" height="35"/>
+        <image name="check" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

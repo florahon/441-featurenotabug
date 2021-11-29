@@ -9,7 +9,7 @@ import UIKit
 class RecipeViewController: UITableViewController{
     
     let CellIdentifier = "Cell Identifier"
-    var recipes = ["example", "list"]
+    var recipes = ["example1", "example2"]
     var selected_items = [String]()
     
     override func viewDidLoad() {
