@@ -24,6 +24,7 @@ urlpatterns = [
     path('removeitem/', views.removeitem, name='removeitem'),
     path('updateitem/', views.updateitem, name='updateitem'),
     path('getrecipes/', views.getrecipes, name='getrecipes'),
-    path('scanreceipt/', views.scanreceipt, name='scanreceipt')
-    path('scanimage/', views.scanimage, name='scanimage')
+    path('scanreceipt/', views.scanreceipt, name='scanreceipt'),
+    path('scanimage/', views.scanimage, name='scanimage'),
+    path('adduser/', views.adduser, name='adduser')
 ]
