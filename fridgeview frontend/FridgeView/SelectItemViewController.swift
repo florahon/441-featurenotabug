@@ -47,7 +47,6 @@ class SelectItemViewController: UIViewController, UITableViewDataSource, UITable
             cur_cat = cur_cat + 1
             count = 0
         }
-        
     }
     
     required init?(coder decoder: NSCoder) {
@@ -126,6 +125,7 @@ class SelectItemViewController: UIViewController, UITableViewDataSource, UITable
         
         if(isRowChecked == true)
         {
+            print("test")
             cell.checkBox.isChecked = true
             cell.checkBox.buttonClicked(sender: cell.checkBox)
         }else{
@@ -139,21 +139,29 @@ class SelectItemViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! Cell
         cell.contentView.backgroundColor = UIColor.white
+        print(categories[indexPath.section].item[indexPath.row].name)
+        SelectedItems.selected.append(categories[indexPath.section].item[indexPath.row])
         // cross checking for checked rows
         if(rowsWhichAreChecked.contains(indexPath as NSIndexPath) == false){
             cell.checkBox.isChecked = true
             cell.checkBox.buttonClicked(sender: cell.checkBox)
-            SelectedItems.selected.append(categories[indexPath.section].item[indexPath.row])
         }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! Cell
         cell.checkBox.isChecked = false
         cell.checkBox.buttonClicked(sender: cell.checkBox)
+        var count = 0
+        for s in SelectedItems.selected{
+            if s.expr_date == categories[indexPath.section].item[indexPath.row].expr_date && s.name == categories[indexPath.section].item[indexPath.row].name &&
+                s.quantity == categories[indexPath.section].item[indexPath.row].quantity{
+                SelectedItems.selected.remove(at: count)
+            }
+            count = count + 1
+        }
         // remove the indexPath from rowsWhichAreCheckedArray
         if let checkedItemIndex = rowsWhichAreChecked.firstIndex(of: indexPath as NSIndexPath){
             rowsWhichAreChecked.remove(at: checkedItemIndex)
-            categories.remove(at: checkedItemIndex)
         }
         
     }

@@ -10,15 +10,15 @@ class RecipeViewController: UITableViewController{
     
     let CellIdentifier = "Cell Identifier"
     var recipes = ["example", "list"]
-    var selected_items = [Item]()
+    var selected_items = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         print("test")
+        print(SelectItemViewController.SelectedItems.selected.count)
         for s_item in SelectItemViewController.SelectedItems.selected{
-            selected_items.append(s_item)
             print(s_item)
         }
     }
