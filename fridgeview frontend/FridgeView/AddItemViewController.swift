@@ -1,4 +1,5 @@
 import UIKit
+import UserNotifications
 
 class CellClass: UITableViewCell {
     
@@ -73,7 +74,80 @@ class AddItemViewController: UIViewController {
             
             delegate?.controller(controller: self, didSaveItemWithName: name, andQuantity: quantity, andExpr_Date: expr_date, andCategory: category)
                  
+            let center = UNUserNotificationCenter.current()
             
+            center.requestAuthorization(options: [.alert, .sound, .badge]){
+                (granted, error) in
+            }
+            
+            // print(expr_dateTextField.text)
+            let content = UNMutableNotificationContent()
+            content.title = "Your Food is about to Expire!"
+            content.body = "You have a week before you food expires"
+            
+            
+            let currentDate = Date()
+            if (selectedButton.currentTitle! == "Produce"){
+               // print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .second, value: 20, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+               
+            }
+            if (selectedButton.currentTitle == "Protein"){
+               // print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 14, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+            }
+            if (selectedButton.currentTitle == "Dairy"){
+                //print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+            }
+            if (selectedButton.currentTitle == "Other"){
+                //print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 21, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+            }
             
                 // Dismiss View Controller
             dismiss(animated: true, completion: nil)
