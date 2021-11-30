@@ -1,4 +1,5 @@
 import UIKit
+import UserNotifications
 
 class CellClass: UITableViewCell {
     
@@ -8,7 +9,7 @@ protocol AddItemVCDelegate {
     func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int, andExpr_Date expr_date: String, andCategory category: String)
 }
 
-class AddItemViewController: UIViewController {
+class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var quantityTextField: UITextField!
@@ -17,6 +18,8 @@ class AddItemViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var button: UIButton!
     @IBOutlet var button2: UIButton!
+    
+    @IBOutlet var myImg: UIImageView!
     
     @IBOutlet weak var btnSelectCategory: UIButton!
     let transparentView = UIView()
@@ -52,12 +55,37 @@ class AddItemViewController: UIViewController {
 //        present(picker, animated: true)
 //    }
     @IBAction func camera(_ sender: Any){
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            let cameraView = UIImagePickerController()
-            cameraView.delegate = self as?
-            UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            cameraView.sourceType = .camera
-            self.present(cameraView, animated: true, completion: nil)
+//        if UIImagePickerController.isSourceTypeAvailable(.camera){
+//            let cameraView = UIImagePickerController()
+//            cameraView.delegate = self as?
+//            UIImagePickerControllerDelegate & UINavigationControllerDelegate
+//            cameraView.sourceType = .camera
+//            self.present(cameraView, animated: true, completion: nil)
+//        }
+        
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.allowsEditing = true
+        vc.delegate = self
+        present(vc, animated: true)
+        
+//        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
+//                    myImg.contentMode = .scaleToFill
+//                    myImg.image = pickedImage
+//                }
+//                picker.dismiss(animated: true, completion: nil)
+//            }
+//
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            picker.dismiss(animated: true)
+
+            guard let image = info[.editedImage] as? UIImage else {
+                print("No image found")
+                return
+            }
+            myImg.contentMode = .scaleToFill
+            myImg.image = image
         }
     }
 
@@ -73,7 +101,80 @@ class AddItemViewController: UIViewController {
             
             delegate?.controller(controller: self, didSaveItemWithName: name, andQuantity: quantity, andExpr_Date: expr_date, andCategory: category)
                  
+            let center = UNUserNotificationCenter.current()
             
+            center.requestAuthorization(options: [.alert, .sound, .badge]){
+                (granted, error) in
+            }
+            
+            // print(expr_dateTextField.text)
+            let content = UNMutableNotificationContent()
+            content.title = "Your Food is about to Expire!"
+            content.body = "You have a week before you food expires"
+            
+            
+            let currentDate = Date()
+            if (selectedButton.currentTitle! == "Produce"){
+               // print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .second, value: 20, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+               
+            }
+            if (selectedButton.currentTitle == "Protein"){
+               // print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 14, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+            }
+            if (selectedButton.currentTitle == "Dairy"){
+                //print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+            }
+            if (selectedButton.currentTitle == "Other"){
+                //print("TESTING to see if this prints in category select")
+                let modifiedDate = Calendar.current.date(byAdding: .day, value: 21, to: currentDate)!
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from:modifiedDate)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter and handle any errors
+                }
+            }
             
                 // Dismiss View Controller
             dismiss(animated: true, completion: nil)
