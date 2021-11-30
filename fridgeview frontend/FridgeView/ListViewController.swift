@@ -187,7 +187,8 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
     
     func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int, andExpr_Date expr_date: String, andCategory category: String) {
         // Create Item
-        let item = Item(name: name, quantity: quantity, expr_date: expr_date)
+        let item = Item(name: name, quantity: quantity, expr_date: expr_date,
+                        category: category)
         var cur_cat = 0
         var count = 0
         for cat in Inventory.categories{
