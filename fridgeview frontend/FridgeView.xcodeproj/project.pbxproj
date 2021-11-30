@@ -11,6 +11,7 @@
 		0ECE8417272F9225008FA06C /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8413272F9225008FA06C /* GroceryListViewController.swift */; };
 		0ECE8418272F9225008FA06C /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */; };
 		0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8415272F9225008FA06C /* GroceryItem.swift */; };
+		8811F17823393F6F7ED687EB /* Pods_FridgeView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610368300FA77DE5AFFF55E2 /* Pods_FridgeView.framework */; };
 		E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F57272C75BA00990225 /* AppDelegate.swift */; };
 		E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F59272C75BA00990225 /* SceneDelegate.swift */; };
 		E3041F61272C75BB00990225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3041F60272C75BB00990225 /* Assets.xcassets */; };
@@ -31,6 +32,9 @@
 		0ECE8413272F9225008FA06C /* GroceryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
 		0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
 		0ECE8415272F9225008FA06C /* GroceryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
+		610368300FA77DE5AFFF55E2 /* Pods_FridgeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeView.release.xcconfig"; path = "Target Support Files/Pods-FridgeView/Pods-FridgeView.release.xcconfig"; sourceTree = "<group>"; };
+		C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeView.debug.xcconfig"; path = "Target Support Files/Pods-FridgeView/Pods-FridgeView.debug.xcconfig"; sourceTree = "<group>"; };
 		E3041F54272C75BA00990225 /* FridgeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3041F57272C75BA00990225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3041F59272C75BA00990225 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,17 +58,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8811F17823393F6F7ED687EB /* Pods_FridgeView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		610CDB5D8EA420463A3B908C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */,
+				BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9EC9DBA8D3B55268902BF796 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				610368300FA77DE5AFFF55E2 /* Pods_FridgeView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3041F4B272C75BA00990225 = {
 			isa = PBXGroup;
 			children = (
 				E3041F56272C75BA00990225 /* FridgeView */,
 				E3041F55272C75BA00990225 /* Products */,
+				610CDB5D8EA420463A3B908C /* Pods */,
+				9EC9DBA8D3B55268902BF796 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,9 +134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3041F68272C75BB00990225 /* Build configuration list for PBXNativeTarget "FridgeView" */;
 			buildPhases = (
+				A2AB449B7DAB0C559E8F74B7 /* [CP] Check Pods Manifest.lock */,
 				E3041F50272C75BA00990225 /* Sources */,
 				E3041F51272C75BA00990225 /* Frameworks */,
 				E3041F52272C75BA00990225 /* Resources */,
+				6FFBCA6019C882BAD2E67DB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,6 +195,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6FFBCA6019C882BAD2E67DB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FridgeView/Pods-FridgeView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FridgeView/Pods-FridgeView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FridgeView/Pods-FridgeView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2AB449B7DAB0C559E8F74B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FridgeView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E3041F50272C75BA00990225 /* Sources */ = {
@@ -330,6 +399,7 @@
 		};
 		E3041F69272C75BB00990225 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -359,6 +429,7 @@
 		};
 		E3041F6A272C75BB00990225 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

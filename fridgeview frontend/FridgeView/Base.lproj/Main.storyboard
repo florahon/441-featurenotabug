@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -87,6 +87,9 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7rV-oi-IfC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" header="YES"/>
+                        </accessibility>
                     </view>
                     <navigationItem key="navigationItem" title="FrigeView" id="H0s-Tm-Dar"/>
                 </viewController>
@@ -145,29 +148,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qt" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-cs-ee2">
-                                <rect key="frame" x="327" y="96" width="67" height="34"/>
+                                <rect key="frame" x="327" y="143" width="67" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDF-aq-Nu0">
-                                <rect key="frame" x="20" y="96" width="239" height="34"/>
+                                <rect key="frame" x="20" y="143" width="239" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiration Date (MM/DD/YYYY)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OM0-8B-yh4">
-                                <rect key="frame" x="20" y="138" width="239" height="34"/>
+                                <rect key="frame" x="20" y="185" width="239" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ha-Dd-99f">
+                                <rect key="frame" x="62" y="98" width="290" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Click to Change Category"/>
+                                <connections>
+                                    <action selector="onClickSelectCategory:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="gWW-AE-XdZ"/>
+                                    <action selector="onClickSelectCategory:" destination="s1V-Dm-Sbl" eventType="touchUpInside" id="gfM-Gt-AMS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1hU-vh-JYn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="hwb-6r-lbc"/>
                     <connections>
+                        <outlet property="btnSelectCategory" destination="4ha-Dd-99f" id="FpY-nk-ibZ"/>
                         <outlet property="expr_dateTextField" destination="OM0-8B-yh4" id="DF3-7N-xv5"/>
                         <outlet property="nTextField" destination="TDF-aq-Nu0" id="JwW-hy-OZm"/>
                         <outlet property="quantityTextField" destination="a2D-cs-ee2" id="rdC-xU-W0L"/>
@@ -511,7 +525,6 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mko-aj-zfI"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sf1-d6-JAh" firstAttribute="top" secondItem="Mko-aj-zfI" secondAttribute="top" id="Erf-dN-Lds"/>
                             <constraint firstItem="sf1-d6-JAh" firstAttribute="trailing" secondItem="Mko-aj-zfI" secondAttribute="trailing" id="Fk2-Aa-foG"/>

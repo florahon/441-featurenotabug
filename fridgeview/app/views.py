@@ -24,6 +24,11 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 
 import hashlib
+import requests
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Create your views here.
 
@@ -142,20 +147,46 @@ def getrecipes(request):
         return HttpResponse(status=404)
 
     ingredients = request.GET['ingredients']
+    numRecipesVisible = 25 
+    # Make call to get the list of recipes with minimum number of missing ingredients:
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients"
 
-    # TODO: Modify ingredient string as necessary
+    querystring = {"ingredients":ingredients,"number":numRecipesVisible,"ignorePantry":"true","ranking":"1"}
 
-    os.chdir('../recipe_recommend/')
-    import word2vec_rec
-    recipes = word2vec_rec.send_recs(ingredients)
-    os.chdir('../app/')
+    headers = {
+        'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        'x-rapidapi-key': str(env('RAPID_API_KEY'))
+        }
 
-    # TODO: Modify recipes to desired format
-    response = {
-        "recipes": recipes,
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    res_json = response.json()
+    recipe_ids = ""
+    for item in res_json:
+        recipe_ids += str(item['id']) + ","
+    
+    # Make another call to get the recipe URLs:
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk"
+
+    querystring = {"ids":recipe_ids}
+
+    headers = {
+        'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        'x-rapidapi-key': str(env('RAPID_API_KEY'))
+        }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    res_json = response.json()
+    final_response = {
+       "recipe": {},
+       "url": {},
     }
-
-    return JsonResponse(response)
+    for i in range(len(res_json)):
+        recipe = res_json[i]['title']
+        url = res_json[i]['sourceUrl']
+        # Add recipe name and url to final response
+        final_response["recipe"][str(i)] = recipe
+        final_response["url"][str(i)] = url
+    return JsonResponse(final_response)
 
 @csrf_exempt
 def scanreceipt(request):
