@@ -32,7 +32,7 @@ def getinventory(request):
         return HttpResponse(status=404)
 
     # Auth:
-    userID = request.args.get('userID')
+    userID = request.GET['userID']
     cursor = connection.cursor()
     cursor.execute('SELECT username, expiration FROM users WHERE userID = %s;', (userID,))
 
@@ -56,7 +56,7 @@ def additem(request):
         return HttpResponse(status=400)
 
     # Auth:
-    userID = request.args.get('userID')
+    userID = request.GET['userID']
     cursor = connection.cursor()
     cursor.execute('SELECT username, expiration FROM users WHERE userID = %s;', (userID,))
 
@@ -70,6 +70,7 @@ def additem(request):
     category = request.POST.get('category')
     expiration = request.POST.get('expiration')
     quantity = request.POST.get('quantity')
+    userid = request.POST.get('userid')
 
     if request.FILES.get("image"):
         content = request.FILES['image']
@@ -81,8 +82,8 @@ def additem(request):
         imageurl = None
 
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO inventory (name, category, expiration, imageurl, quantity) "
-                    "VALUES (?, ?, ?, ?, ?);", (name, category, expiration, imageurl, quantity,))
+    cursor.execute("INSERT INTO inventory (name, category, expiration, imageurl, quantity, userid) "
+                    "VALUES (?, ?, ?, ?, ?, ?);", (name, category, expiration, imageurl, quantity, userid))
     return JsonResponse({})
 
 @csrf_exempt
@@ -91,7 +92,7 @@ def removeitem(request):
         return HttpResponse(status=400)
 
     # Auth:
-    userID = request.args.get('userID')
+    userID = request.GET['userID']
     cursor = connection.cursor()
     cursor.execute('SELECT username, expiration FROM users WHERE userID = %s;', (userID,))
 
@@ -114,7 +115,7 @@ def updateitem(request):
         return HttpResponse(status=400)
 
     # Auth:
-    userID = request.args.get('userID')
+    userID = request.GET['userID']
     cursor = connection.cursor()
     cursor.execute('SELECT username, expiration FROM users WHERE userID = %s;', (userID,))
 
@@ -140,7 +141,7 @@ def getrecipes(request):
     if request.method != 'GET':
         return HttpResponse(status=404)
 
-    ingredients = request.args.get('ingredients')
+    ingredients = request.GET['ingredients']
 
     # TODO: Modify ingredient string as necessary
 
@@ -161,10 +162,11 @@ def scanreceipt(request):
     if request.method != 'GET':
         return HttpResponse(status=400)
 
-    receipt = request.args.get("receipt")
+    receipt = request.FILES["receipt"]
     # receipt = '../static/admin/img/grocery_receipt1'
 
-    text = pytesseract.image_to_string(Image.open(receipt))
+    # text = pytesseract.image_to_string(Image.open(receipt))
+    text = pytesseract.image_to_string(receipt)
     pricePattern = r'([0-9]+\.[0-9]+)'
     # loop over each of the line items in the OCR'd receipt
     items = []
@@ -181,11 +183,30 @@ def scanreceipt(request):
             if (len(item) > 0):
                 items.append(item.lower())
     # Remove the items that involve some total, either 'total' or 'subtotal tax total'
-    if (len(items) >= 3):
-        if ('total' in items[-3]):
-            items = items[:-3]
-        if ('total' in items[-1]):
-            items = items[:-1]
+    # if (len(items) >= 3):
+    #     if ('total' in items[-3]):
+    #         items = items[:-3]
+    #     if ('total' in items[-1]):
+    #         items = items[:-1]
+
+    # Remove non-food items
+    # Obtain food_names list from word_net:
+    food = wn.synset('food.n.02')
+    hypo = lambda s: s.hyponyms()
+    food_names = set()
+    for synset in wn.synsets('food'):
+        food_names |= set([b.replace("_", " ").lower() for s in synset.closure(hypo) for b in s.lemma_names()])
+    
+    # Store the counts of each label
+    labels_map = {}
+    for item in items:
+        if (item.lower() in food_names):
+            labels_map[item] += 1
+
+    # Create the response:
+    response = {}
+    for key in labels_map:
+        response[key] = labels_map[key]
 
     response = {}
     response['items'] = items
@@ -203,12 +224,12 @@ def scanimage(request):
         ...
     }
     """
-    image_content = request.args.get("image")
+    image_content = request.FILES["image"]
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
     # Loads the image into memory
-    with io.open(image_content, 'rb') as image_file:
-        content = image_file.read()
+    # with io.open(image_content, 'rb') as image_file:
+    content = image_content.read()
 
     image = vision.Image(content=content)
 
