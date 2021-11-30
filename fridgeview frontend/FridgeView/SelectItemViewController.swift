@@ -128,7 +128,6 @@ class SelectItemViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! Cell
-        cell.contentView.backgroundColor = UIColor.white
         // cross checking for checked rows
         cell.check.isHidden = false
         print(categories[indexPath.section].item[indexPath.row].name)

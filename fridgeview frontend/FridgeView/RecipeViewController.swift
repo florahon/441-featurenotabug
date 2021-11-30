@@ -5,24 +5,45 @@
 //  Created by Joe Oleszczak on 11/28/21.
 //
 import UIKit
+import Alamofire
 
 class RecipeViewController: UITableViewController{
     
     let CellIdentifier = "Cell Identifier"
-    var recipes = ["example1", "example2"]
-    var selected_items = [String]()
+    var recipes: [String] = []
+    var urls = [String]()
+    var recipe_string = ""
+    let serverUrl = "https://3.131.128.223"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         print("test")
+        var count = 0
         print(SelectItemViewController.SelectedItems.selected.count)
         for s_item in SelectItemViewController.SelectedItems.selected{
+            if count == 0 {
+                recipe_string = s_item.name
+            }
+            else{
+                recipe_string = recipe_string + ", " + s_item.name
+            }
             print(s_item)
+            count = count + 1
         }
+        print(recipe_string)
+        let jsonObj = ["ingredients": recipe_string]
+            guard let apiUrl = URL(string: serverUrl+"/getrecipes/") else {
+                print("getRecipes: Bad URL")
+                return
+            }
+            
+        AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).response { response in
+            debugPrint(response)
+            }
     }
-
+    
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         
