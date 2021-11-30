@@ -27,6 +27,7 @@ class EditViewController: UIViewController {
         
         var dataSource = [String]()
     var category = ""
+    var clicked = 0
      
     var item: Item!
      
@@ -34,6 +35,9 @@ class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+                tableView.dataSource = self
+                tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
         // Create Save Button
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(EditViewController.save(sender:)))
         
@@ -48,8 +52,9 @@ class EditViewController: UIViewController {
             item.name = name
             item.quantity = quantity
             item.expr_date = expr_date
-            category = selectedButton.currentTitle!
-            if category != ""{
+            if (selectedButton.currentTitle == "Produce" || selectedButton.currentTitle == "Dairy" || selectedButton.currentTitle == "Protein" ||
+                selectedButton.currentTitle == "Other") {
+                category = selectedButton.currentTitle!
                 item.category = category
             }
              
@@ -90,6 +95,7 @@ class EditViewController: UIViewController {
         }
 
     @IBAction func onClickSelectCategory(_ sender: Any) {
+            clicked = 1
             dataSource = ["Produce", "Dairy", "Protein", "Other"]
             selectedButton = btnSelectCategory
             print("testing before the if statement")
