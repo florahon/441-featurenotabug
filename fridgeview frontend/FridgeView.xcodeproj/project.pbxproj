@@ -71,7 +71,6 @@
 				C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */,
 				BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -409,6 +408,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FridgeView/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "press yes";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -439,6 +440,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FridgeView/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "press yes";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
