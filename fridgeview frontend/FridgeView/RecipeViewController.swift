@@ -10,21 +10,16 @@ import Alamofire
 
 class RecipeViewController: UITableViewController{
     
-    struct RecipeList: Decodable {
-        var recipesJSON = [String]()
-        var urls = [String]()
-    }
-    
     var recipes = [String]()
+    var urls: [String] = []
     let CellIdentifier = "Cell Identifier"
     var recipe_string = ""
     let serverUrl = "https://3.131.128.223"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
-        print("test")
+        // Do any additional setup after loading the view.
         var count = 0
         print(SelectItemViewController.SelectedItems.selected.count)
         for s_item in SelectItemViewController.SelectedItems.selected{
@@ -44,20 +39,63 @@ class RecipeViewController: UITableViewController{
                 return
             }
             
-        AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
-            if case let .success(data) = response.result {
-                var string_data = data as! String
-                var dataJson: NSData = (string_data as AnyObject).data(using: String.Encoding.utf8.rawValue)! as NSData
-
-                // convert NSData to 'AnyObject'
-                let anyObj: AnyObject? = try? JSONSerialization.jsonObject(with: dataJson as Data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as AnyObject
-                var r: RecipeList
-                //for json in anyObj as AnyObject{
-                 //   print(json["recipe"])
-                //}
-                
+        let group = DispatchGroup()
+            group.enter()
+        DispatchQueue.global().async {
+            AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+                if case let .success(recipe) = response.result {
+                    if let dictionary = recipe as? [String: Any] {
+                        for (key, value) in dictionary {
+                                
+                            print(key)
+                            print(value)
+                            print("-------")
+                            if let dict2 = value as? [String: Any]{
+                                for (key, value) in dict2 {
+                                    print("dict2")
+                                    print(key)
+                                    print(value)
+                                    print("-------")
+                                    let v = value as! String
+                                    var v2 = ""
+                                    v2 = v
+                                    if ((v.starts(with: "http")) == true){
+                                        print("urls")
+                                        print("v2: " + v2)
+                                        self.urls.append(v2)
+                                    }
+                                    else{
+                                        print("recipes")
+                                        print("v2: " + v2)
+                                        self.recipes.append(v2)
+                                    }
+                                }
+                            }
+                            }
+                    }
+                    }
                 }
+                group.leave()
             }
+        
+        
+        group.notify(queue: .main) {
+            print(self.recipes.count)
+            print("RECIPES:")
+            for rec in self.recipes{
+                print(rec)
+            }
+            }
+        let secondsToDelay = 12.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+           print("This message is delayed")
+            print(self.recipes.count)
+            print("RECIPES:")
+            for rec in self.recipes{
+                print(rec)
+            }
+            self.tableView.reloadData()
+        }
     }
     
     required init?(coder decoder: NSCoder) {
@@ -110,6 +148,7 @@ class RecipeViewController: UITableViewController{
          
         // Fetch Item
         let item = recipes[indexPath.row]
+        print("item in table view: " + item)
          
         // Configure Table View Cell
         cell.textLabel?.text = item

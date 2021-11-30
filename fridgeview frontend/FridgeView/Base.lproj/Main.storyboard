@@ -274,6 +274,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Save to Photo Gallery"/>
+                                <connections>
+                                    <action selector="save:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="jlk-oq-k1V"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="muZ-6U-b1l"/>
