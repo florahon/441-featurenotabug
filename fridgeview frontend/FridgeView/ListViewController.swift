@@ -74,13 +74,36 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
     
     func controller(controller: EditViewController, didUpdateItem item: Item) {
         var count = 0
+        var change = 0
         for cat in Inventory.categories{
             // Fetch Index for Item
             if let index = cat.item.index(of: item) {
                     // Update Table View
+                if item.category == cat.categoryName{
                     tableView.reloadRows(at: [IndexPath(row: index, section: count)], with: .fade)
                 }
+                else{
+                    change = 1
+                    // Delete Item from Items
+                    Inventory.categories[count].item.remove(at: index)
+                     
+                    // Update Table View
+                    tableView.deleteRows(at: [IndexPath(row: index, section: count)], with: .fade)
+                }
+                }
             count = count + 1
+        }
+        count = 0
+        if change == 1{
+            for cat in Inventory.categories{
+                // Fetch Index for Item
+                if item.category == cat.categoryName {
+                        // Update Table View
+                    Inventory.categories[count].item.append(item)
+                    tableView.insertRows(at: [IndexPath(row: (Inventory.categories[count].item.count - 1), section: count)], with: .automatic)
+                    }
+                count = count + 1
+            }
         }
             // Save Items
             saveItems()
