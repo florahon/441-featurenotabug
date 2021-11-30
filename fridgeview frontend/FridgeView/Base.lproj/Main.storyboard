@@ -197,15 +197,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7a-GQ-yz3">
-                                <rect key="frame" x="145" y="233" width="125" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
-                                <connections>
-                                    <action selector="camera:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="IVK-jB-wBo"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manually Add Item:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-1E-LXg">
                                 <rect key="frame" x="20" y="56" width="146" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -227,15 +218,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ey-W9-Lbm">
-                                <rect key="frame" x="145" y="302" width="125" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
-                                <connections>
-                                    <action selector="camera:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="CU4-vc-VOa"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Expiration Date (MM/DD/YYYY)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B7t-vH-6mP">
                                 <rect key="frame" x="20" y="161" width="272" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -251,10 +233,34 @@
                                     <action selector="onClickSelectCategory:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="8j5-B4-TPR"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYd-Eh-mgB">
-                                <rect key="frame" x="87" y="431" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3O-pR-5cq">
+                                <rect key="frame" x="107" y="234" width="169" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="NKQ-W4-6AT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaZ-RN-WbU">
+                                <rect key="frame" x="101" y="315" width="181" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="maS-mA-asc"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-mj-PZ7">
+                                <rect key="frame" x="75" y="369" width="264" height="169"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-Rf-lez">
+                                <rect key="frame" x="117" y="573" width="181" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save to Photo Gallery"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="muZ-6U-b1l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,11 +279,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnSelectCategory" destination="yry-uN-WPu" id="lmt-hN-gmu"/>
-                        <outlet property="button" destination="b7a-GQ-yz3" id="DXl-fW-778"/>
-                        <outlet property="button2" destination="8ey-W9-Lbm" id="MO8-cn-X2O"/>
                         <outlet property="expr_dateTextField" destination="B7t-vH-6mP" id="Wpb-vE-q5Y"/>
-                        <outlet property="imageView" destination="gYd-Eh-mgB" id="JZu-id-Jfh"/>
-                        <outlet property="myImg" destination="gYd-Eh-mgB" id="IdP-mF-V6F"/>
+                        <outlet property="imageTake" destination="8rT-mj-PZ7" id="Zcu-qE-ppQ"/>
                         <outlet property="nameTextField" destination="AKC-ct-L9d" id="Wh7-Ev-2is"/>
                         <outlet property="quantityTextField" destination="dYy-ye-Xuc" id="nYe-VO-s8d"/>
                     </connections>
