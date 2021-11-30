@@ -5,13 +5,18 @@
 //  Created by Joe Oleszczak on 11/28/21.
 //
 import UIKit
+import Foundation
 import Alamofire
 
 class RecipeViewController: UITableViewController{
     
+    struct RecipeList: Decodable {
+        var recipesJSON = [String]()
+        var urls = [String]()
+    }
+    
+    var recipes = [String]()
     let CellIdentifier = "Cell Identifier"
-    var recipes: [String] = []
-    var urls = [String]()
     var recipe_string = ""
     let serverUrl = "https://3.131.128.223"
     
@@ -39,8 +44,19 @@ class RecipeViewController: UITableViewController{
                 return
             }
             
-        AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).response { response in
-            debugPrint(response)
+        AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+            if case let .success(data) = response.result {
+                var string_data = data as! String
+                var dataJson: NSData = (string_data as AnyObject).data(using: String.Encoding.utf8.rawValue)! as NSData
+
+                // convert NSData to 'AnyObject'
+                let anyObj: AnyObject? = try? JSONSerialization.jsonObject(with: dataJson as Data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as AnyObject
+                var r: RecipeList
+                //for json in anyObj as AnyObject{
+                 //   print(json["recipe"])
+                //}
+                
+                }
             }
     }
     
