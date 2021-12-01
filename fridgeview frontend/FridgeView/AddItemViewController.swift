@@ -308,64 +308,117 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        }
        imageTake.image = selectedImage
        //let jsonObj = ["receipt": imageTake.image]
-       guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
-           print("postReceipt: Bad URL")
-           return
-       }
-       
-       guard let getUrl = URL(string: serverUrl+"/getreceiptitems/") else {
-           print("getReceipt: Bad URL")
-           return
-       }
-       
-       let id = randomString(length: 20)
-       
-       
-       AF.upload(multipartFormData: { mpFD in
-           if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
-               mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
-           }
-           if let identifier = id.data(using: .utf8) {
-               mpFD.append(identifier, withName: "identifier")
-           }
-       }, to: apiUrl, method: .post).response { response in
-           switch (response.result) {
-           case .success:
-               print(response.debugDescription)
-               print("postChatt: chatt posted!")
-           case .failure:
-               print("postChatt: posting failed")
-           }
-           
-       }
-       let secondsToDelay = 10.0
-       DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
-           print("passes post")
-           let jsonObj = ["identifier": id]
-           AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
-               print("gets to here")
-               print(response.debugDescription)
-                   if case let .success(items) = response.result {
-                       print(items)
-                       if let dictionary = items as? [String: Any] {
-                           for (key, value) in dictionary {
-                               print(key)
-                               print(value)
-                           }
-                       }
-                   } else{
-                       print("failed")
-                   }
-                   }
-       }
        
        
            
        if choice == 0 {
+           guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
+               print("postReceipt: Bad URL")
+               return
+           }
+           
+           guard let getUrl = URL(string: serverUrl+"/getitems/") else {
+               print("getReceipt: Bad URL")
+               return
+           }
+           
+           let id = randomString(length: 20)
+           let imgData = imageTake.image!.jpegData(compressionQuality: 1.0)
+           
+           AF.upload(multipartFormData: { mpFD in
+               if let image = imgData {
+                   mpFD.append(image, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
+               }
+               if let identifier = id.data(using: .utf8) {
+                   mpFD.append(identifier, withName: "identifier")
+               }
+           }, to: apiUrl, method: .post).response { response in
+               switch (response.result) {
+               case .success:
+                   print(response.debugDescription)
+                   print(response.request)
+                   print(response.response)
+                   print("postChatt: chatt posted!")
+               case .failure:
+                   print("postChatt: posting failed")
+               }
+               
+           }
+           let secondsToDelay = 20.0
+           DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+               print("passes post")
+               let jsonObj = ["identifier": id]
+               AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+                   print("gets to here")
+                   print(response.debugDescription)
+                       if case let .success(items) = response.result {
+                           print(items)
+                           if let dictionary = items as? [String: Any] {
+                               for (key, value) in dictionary {
+                                   print(key)
+                                   print(value)
+                               }
+                           }
+                       } else{
+                           print("failed")
+                       }
+                       }
+           }
            let viewController = ReceiptViewController()
            self.present(viewController, animated: true, completion: nil)
        }
        else if choice == 1 {
+           guard let apiUrl = URL(string: serverUrl+"/scanimage/") else {
+               print("postReceipt: Bad URL")
+               return
+           }
+           
+           guard let getUrl = URL(string: serverUrl+"/getitems/") else {
+               print("getReceipt: Bad URL")
+               return
+           }
+           
+           let id = randomString(length: 20)
+           let imgData = imageTake.image!.jpegData(compressionQuality: 1.0)
+           
+           AF.upload(multipartFormData: { mpFD in
+               if let image = imgData {
+                   mpFD.append(image, withName: "image", fileName: "image", mimeType: "image/jpeg")
+               }
+               if let identifier = id.data(using: .utf8) {
+                   mpFD.append(identifier, withName: "identifier")
+               }
+           }, to: apiUrl, method: .post).response { response in
+               switch (response.result) {
+               case .success:
+                   print(response.debugDescription)
+                   print(response.error)
+                   print("postChatt: image posted!")
+               case .failure:
+                   print("postChatt: posting failed")
+               }
+               
+           }
+           let secondsToDelay = 20.0
+           DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+               print("passes post")
+               let jsonObj = ["identifier": id]
+               AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+                   print("gets to here")
+                   print(response.debugDescription)
+                       if case let .success(items) = response.result {
+                           print(items)
+                           if let dictionary = items as? [String: Any] {
+                               for (key, value) in dictionary {
+                                   print(key)
+                                   print(value)
+                               }
+                           }
+                       } else{
+                           print("failed")
+                       }
+                       }
+           }
            let viewController = CameraItemViewController()
            self.present(viewController, animated: true, completion: nil)
        }
