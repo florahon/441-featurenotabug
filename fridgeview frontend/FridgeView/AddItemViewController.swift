@@ -6,6 +6,11 @@ class CellClass: UITableViewCell {
     
 }
 
+func randomString(length: Int) -> String {
+  let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+  return String((0..<length).map{ _ in letters.randomElement()! })
+}
+
 protocol AddItemVCDelegate {
     func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int, andExpr_Date expr_date: String, andCategory category: String)
 }
@@ -304,36 +309,37 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        imageTake.image = selectedImage
        //let jsonObj = ["receipt": imageTake.image]
        guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
-           print("getRecipes: Bad URL")
+           print("postReceipt: Bad URL")
            return
        }
        
+       guard let getUrl = URL(string: serverUrl+"/getreceiptitems/") else {
+           print("getReceipt: Bad URL")
+           return
+       }
+       
+       let id = randomString(length: 20)
+       
        AF.upload(multipartFormData: { mpFD in
            if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
-                       mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
-                   }
-               }, to: apiUrl, method: .post).responseJSON { response in
-                   if case let .success(items) = response.result {
-                       print(response.result)
-                       if let dictionary = items as? [String: Any] {
-                           for (key, value) in dictionary {
-                               print(key)
-                               print(value)
-                           }
-                       }
-                   }
-                   else{
-                       print(response.result)
-                       print(response.debugDescription)
-                       print("failed")
-                   }
-               }
+               mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
+           }
            
-       if choice == 0{
+           if let id = id.data(using: .utf8) {
+               mpFD.append(id, withName: "id")
+           }
+           
+       }, to: apiUrl, method: .post).response { response in
+           
+       }
+       
+       
+           
+       if choice == 0 {
            let viewController = ReceiptViewController()
            self.present(viewController, animated: true, completion: nil)
        }
-       else if choice == 1{
+       else if choice == 1 {
            let viewController = CameraItemViewController()
            self.present(viewController, animated: true, completion: nil)
        }
