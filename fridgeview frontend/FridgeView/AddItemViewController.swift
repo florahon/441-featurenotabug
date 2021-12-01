@@ -1,25 +1,36 @@
 import UIKit
 import UserNotifications
+import Alamofire
 
 class CellClass: UITableViewCell {
     
+}
+
+func randomString(length: Int) -> String {
+  let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+  return String((0..<length).map{ _ in letters.randomElement()! })
 }
 
 protocol AddItemVCDelegate {
     func controller(controller: AddItemViewController, didSaveItemWithName name: String, andQuantity quantity: Int, andExpr_Date expr_date: String, andCategory category: String)
 }
 
-class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddItemViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var quantityTextField: UITextField!
     @IBOutlet var expr_dateTextField: UITextField!
+
+    @IBOutlet weak var imageTake: UIImageView!
+    var imagePicker: UIImagePickerController!
     
-    @IBOutlet var imageView: UIImageView!
-    @IBOutlet var button: UIButton!
-    @IBOutlet var button2: UIButton!
+    var choice = 0
+    let serverUrl = "https://3.131.128.223"
     
-    @IBOutlet var myImg: UIImageView!
+    enum ImageSource {
+        case photoLibrary
+        case camera
+    }
     
     @IBOutlet weak var btnSelectCategory: UIButton!
     let transparentView = UIView()
@@ -54,40 +65,52 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
 //        picker.delegate = self
 //        present(picker, animated: true)
 //    }
-    @IBAction func camera(_ sender: Any){
-//        if UIImagePickerController.isSourceTypeAvailable(.camera){
-//            let cameraView = UIImagePickerController()
-//            cameraView.delegate = self as?
-//            UIImagePickerControllerDelegate & UINavigationControllerDelegate
-//            cameraView.sourceType = .camera
-//            self.present(cameraView, animated: true, completion: nil)
-//        }
-        
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.allowsEditing = true
-        vc.delegate = self
-        present(vc, animated: true)
-        
-//        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//            if let pickedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage {
-//                    myImg.contentMode = .scaleToFill
-//                    myImg.image = pickedImage
-//                }
-//                picker.dismiss(animated: true, completion: nil)
-//            }
-//
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            picker.dismiss(animated: true)
 
-            guard let image = info[.editedImage] as? UIImage else {
-                print("No image found")
-                return
-            }
-            myImg.contentMode = .scaleToFill
-            myImg.image = image
+    @IBAction func takePhoto(_ sender: UIButton) {
+        choice = 0
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            selectImageFrom(.photoLibrary)
+            return
         }
+        selectImageFrom(.camera)
     }
+    func selectImageFrom(_ source: ImageSource){
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        switch source {
+        case .camera:
+            imagePicker.sourceType = .camera
+        case .photoLibrary:
+            imagePicker.sourceType = .photoLibrary
+        }
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func takePhoto1(_ sender: UIButton) {
+        choice = 1
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            selectImageFrom(.photoLibrary)
+            return
+        }
+        selectImageFrom(.camera)
+    }
+    
+//    func selectImageFrom1(_ source: ImageSource){
+//        imagePicker =  UIImagePickerController()
+//        imagePicker.delegate = self
+//        switch source {
+//        case .camera:
+//            imagePicker.sourceType = .camera
+//        case .photoLibrary:
+//            imagePicker.sourceType = .photoLibrary
+//        }
+//        present(imagePicker, animated: true, completion: nil)
+//    }
+    
+    
+ 
+    
+    // ___________________
 
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -274,6 +297,84 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource {
         removeTransparentView()
     }
 }
+
+extension AddItemViewController: UIImagePickerControllerDelegate{
+
+   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+       imagePicker.dismiss(animated: true, completion: nil)
+       guard let selectedImage = info[.originalImage] as? UIImage else {
+           print("Image not found!")
+           return
+       }
+       imageTake.image = selectedImage
+       //let jsonObj = ["receipt": imageTake.image]
+       guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
+           print("postReceipt: Bad URL")
+           return
+       }
+       
+       guard let getUrl = URL(string: serverUrl+"/getreceiptitems/") else {
+           print("getReceipt: Bad URL")
+           return
+       }
+       
+       let id = randomString(length: 20)
+       
+       
+       AF.upload(multipartFormData: { mpFD in
+           if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
+               mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
+           }
+           if let identifier = id.data(using: .utf8) {
+               mpFD.append(identifier, withName: "identifier")
+           }
+       }, to: apiUrl, method: .post).response { response in
+           switch (response.result) {
+           case .success:
+               print(response.debugDescription)
+               print("postChatt: chatt posted!")
+           case .failure:
+               print("postChatt: posting failed")
+           }
+           
+       }
+       let secondsToDelay = 10.0
+       DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+           print("passes post")
+           let jsonObj = ["identifier": id]
+           AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+               print("gets to here")
+               print(response.debugDescription)
+                   if case let .success(items) = response.result {
+                       print(items)
+                       if let dictionary = items as? [String: Any] {
+                           for (key, value) in dictionary {
+                               print(key)
+                               print(value)
+                           }
+                       }
+                   } else{
+                       print("failed")
+                   }
+                   }
+       }
+       
+       
+           
+       if choice == 0 {
+           let viewController = ReceiptViewController()
+           self.present(viewController, animated: true, completion: nil)
+       }
+       else if choice == 1 {
+           let viewController = CameraItemViewController()
+           self.present(viewController, animated: true, completion: nil)
+       }
+       
+   }
+}
+
+
+
 //extension AddItemViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 //
 //    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

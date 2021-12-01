@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EB5461C2757044E00A0C9C8 /* CameraItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB5461B2757044E00A0C9C8 /* CameraItemViewController.swift */; };
 		0ECE8416272F9225008FA06C /* EditGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */; };
 		0ECE8417272F9225008FA06C /* GroceryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8413272F9225008FA06C /* GroceryListViewController.swift */; };
 		0ECE8418272F9225008FA06C /* AddGroceryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */; };
 		0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECE8415272F9225008FA06C /* GroceryItem.swift */; };
+		8811F17823393F6F7ED687EB /* Pods_FridgeView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 610368300FA77DE5AFFF55E2 /* Pods_FridgeView.framework */; };
 		E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F57272C75BA00990225 /* AppDelegate.swift */; };
 		E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3041F59272C75BA00990225 /* SceneDelegate.swift */; };
 		E3041F61272C75BB00990225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3041F60272C75BB00990225 /* Assets.xcassets */; };
@@ -21,16 +23,22 @@
 		E32BF83627517D9A00CF7B34 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF83427517D9A00CF7B34 /* Cell.swift */; };
 		E32BF84A2751802800CF7B34 /* CheckBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = E32BF8492751802800CF7B34 /* CheckBoxChecked.png */; };
 		E32BF84C2754133400CF7B34 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF84B2754133400CF7B34 /* RecipeViewController.swift */; };
+		E3406CF82756DA2600CE0D9A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3406CF72756DA2600CE0D9A /* RecipeCell.swift */; };
+		E3406CFA275701A100CE0D9A /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3406CF9275701A100CE0D9A /* ReceiptViewController.swift */; };
 		E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C741F272C872B00A83CB7 /* AddItemViewController.swift */; };
 		E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C7421272C88A200A83CB7 /* ListViewController.swift */; };
 		E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EB5461B2757044E00A0C9C8 /* CameraItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraItemViewController.swift; sourceTree = "<group>"; };
 		0ECE8412272F9225008FA06C /* EditGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGroceryViewController.swift; sourceTree = "<group>"; };
 		0ECE8413272F9225008FA06C /* GroceryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListViewController.swift; sourceTree = "<group>"; };
 		0ECE8414272F9225008FA06C /* AddGroceryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroceryViewController.swift; sourceTree = "<group>"; };
 		0ECE8415272F9225008FA06C /* GroceryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
+		610368300FA77DE5AFFF55E2 /* Pods_FridgeView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeView.release.xcconfig"; path = "Target Support Files/Pods-FridgeView/Pods-FridgeView.release.xcconfig"; sourceTree = "<group>"; };
+		C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeView.debug.xcconfig"; path = "Target Support Files/Pods-FridgeView/Pods-FridgeView.debug.xcconfig"; sourceTree = "<group>"; };
 		E3041F54272C75BA00990225 /* FridgeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3041F57272C75BA00990225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3041F59272C75BA00990225 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +52,8 @@
 		E32BF83F27517E2700CF7B34 /* CheckBoxUnChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckBoxUnChecked.png; sourceTree = "<group>"; };
 		E32BF8492751802800CF7B34 /* CheckBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckBoxChecked.png; sourceTree = "<group>"; };
 		E32BF84B2754133400CF7B34 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
+		E3406CF72756DA2600CE0D9A /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		E3406CF9275701A100CE0D9A /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		E39C741F272C872B00A83CB7 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		E39C7421272C88A200A83CB7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -54,17 +64,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8811F17823393F6F7ED687EB /* Pods_FridgeView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		610CDB5D8EA420463A3B908C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */,
+				BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9EC9DBA8D3B55268902BF796 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				610368300FA77DE5AFFF55E2 /* Pods_FridgeView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3041F4B272C75BA00990225 = {
 			isa = PBXGroup;
 			children = (
 				E3041F56272C75BA00990225 /* FridgeView */,
 				E3041F55272C75BA00990225 /* Products */,
+				610CDB5D8EA420463A3B908C /* Pods */,
+				9EC9DBA8D3B55268902BF796 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +128,9 @@
 				E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */,
 				E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */,
 				E32BF84B2754133400CF7B34 /* RecipeViewController.swift */,
+				E3406CF72756DA2600CE0D9A /* RecipeCell.swift */,
+				E3406CF9275701A100CE0D9A /* ReceiptViewController.swift */,
+				0EB5461B2757044E00A0C9C8 /* CameraItemViewController.swift */,
 			);
 			path = FridgeView;
 			sourceTree = "<group>";
@@ -109,9 +142,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E3041F68272C75BB00990225 /* Build configuration list for PBXNativeTarget "FridgeView" */;
 			buildPhases = (
+				A2AB449B7DAB0C559E8F74B7 /* [CP] Check Pods Manifest.lock */,
 				E3041F50272C75BA00990225 /* Sources */,
 				E3041F51272C75BA00990225 /* Frameworks */,
 				E3041F52272C75BA00990225 /* Resources */,
+				6FFBCA6019C882BAD2E67DB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,11 +204,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6FFBCA6019C882BAD2E67DB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FridgeView/Pods-FridgeView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FridgeView/Pods-FridgeView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FridgeView/Pods-FridgeView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2AB449B7DAB0C559E8F74B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FridgeView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E3041F50272C75BA00990225 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB5461C2757044E00A0C9C8 /* CameraItemViewController.swift in Sources */,
+				E3406CF82756DA2600CE0D9A /* RecipeCell.swift in Sources */,
 				0ECE8418272F9225008FA06C /* AddGroceryViewController.swift in Sources */,
 				E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */,
 				E32BF84C2754133400CF7B34 /* RecipeViewController.swift in Sources */,
@@ -185,6 +264,7 @@
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
 				0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
+				E3406CFA275701A100CE0D9A /* ReceiptViewController.swift in Sources */,
 				E312CC94274DC99100DE8F20 /* SelectItemViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
 			);
@@ -330,15 +410,19 @@
 		};
 		E3041F69272C75BB00990225 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0D2B5E448ACB09E2CB42F76 /* Pods-FridgeView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AVSLM7BJQV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FridgeView/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "press yes";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -351,6 +435,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umich.joleszcz.FridgeView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -359,15 +444,19 @@
 		};
 		E3041F6A272C75BB00990225 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFD4A77C64CF25511E5E4041 /* Pods-FridgeView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AVSLM7BJQV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FridgeView/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "press yes";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -380,6 +469,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = edu.umich.joleszcz.FridgeView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
