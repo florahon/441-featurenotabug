@@ -575,6 +575,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecipeCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" id="qqm-hg-m7v" customClass="RecipeCell" customModule="FridgeView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qqm-hg-m7v" id="HIO-5o-abu">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jz6-pV-ebh">
+                                            <rect key="frame" x="308" y="5" width="61" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="ExternalLink"/>
+                                            <connections>
+                                                <action selector="didTapWithSender:" destination="qqm-hg-m7v" eventType="touchUpInside" id="9a7-cN-FNq"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="link" destination="Jz6-pV-ebh" id="uC7-Dn-HWS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="9pi-Wu-Vs3" id="bPV-dY-1Oj"/>
                             <outlet property="delegate" destination="9pi-Wu-Vs3" id="Q16-hI-ZRA"/>
@@ -584,10 +608,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA0-7Y-UXZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4451" y="-1008"/>
+            <point key="canvasLocation" x="4450.7246376811599" y="-1008.4821428571428"/>
         </scene>
     </scenes>
     <resources>
+        <image name="ExternalLink" width="66.666664123535156" height="66.666664123535156"/>
         <image name="check" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

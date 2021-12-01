@@ -10,8 +10,11 @@ import Alamofire
 
 class RecipeViewController: UITableViewController{
     
-    var recipes = [String]()
+    var recipes: [String] = []
     var urls: [String] = []
+    var usedUrls: [String] = []
+    var recipeKeys: [String] = []
+    var urlKeys: [String] = []
     let CellIdentifier = "Cell Identifier"
     var recipe_string = ""
     let serverUrl = "https://3.131.128.223"
@@ -52,22 +55,21 @@ class RecipeViewController: UITableViewController{
                             print("-------")
                             if let dict2 = value as? [String: Any]{
                                 for (key, value) in dict2 {
-                                    print("dict2")
-                                    print(key)
-                                    print(value)
-                                    print("-------")
                                     let v = value as! String
-                                    var v2 = ""
-                                    v2 = v
+                                    let v2 = v.trimmingCharacters(in: .whitespaces)
                                     if ((v.starts(with: "http")) == true){
-                                        print("urls")
-                                        print("v2: " + v2)
+                                        //print("key: " + key)
+                                        //print("urls:")
+                                        //print(v2)
                                         self.urls.append(v2)
+                                        self.urlKeys.append(key)
                                     }
                                     else{
-                                        print("recipes")
-                                        print("v2: " + v2)
+                                        //print("key: " + key)
+                                        //print("recipes:")
+                                        //print(v2)
                                         self.recipes.append(v2)
+                                        self.recipeKeys.append(key)
                                     }
                                 }
                             }
@@ -78,21 +80,26 @@ class RecipeViewController: UITableViewController{
                 group.leave()
             }
         
-        
-        group.notify(queue: .main) {
-            print(self.recipes.count)
-            print("RECIPES:")
-            for rec in self.recipes{
-                print(rec)
-            }
-            }
-        let secondsToDelay = 12.0
+        let secondsToDelay = 15.0
         DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
            print("This message is delayed")
             print(self.recipes.count)
             print("RECIPES:")
-            for rec in self.recipes{
-                print(rec)
+            for n in 0..<self.recipes.count{
+                //print("--------------------------")
+                //print(self.recipes[n])
+                //print(self.urls[n])
+                //print("--------------------------")
+            }
+            var count = 0
+            for n in self.recipeKeys{
+                for i in self.urlKeys{
+                    if n == i{
+                        self.usedUrls.append(self.urls[count])
+                    }
+                    count = count + 1
+                }
+                count = 0
             }
             self.tableView.reloadData()
         }
@@ -144,11 +151,18 @@ class RecipeViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue Reusable Cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
-         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as! RecipeCell
+        var thisURL = URL(string: "https://google.com")
+        if usedUrls.count != 0 {
+            thisURL = URL(string: usedUrls[indexPath.row])
+            cell.urlLink = thisURL!
+        }
         // Fetch Item
         let item = recipes[indexPath.row]
-        print("item in table view: " + item)
+        
+
+        //print("item in table view: " + item)
+        //print("recipe: " + usedUrls[indexPath.row])
          
         // Configure Table View Cell
         cell.textLabel?.text = item
@@ -156,11 +170,11 @@ class RecipeViewController: UITableViewController{
         return cell
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-           return 40
+           return 60
     }
          
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           return 40
+           return 60
     }
 
 }

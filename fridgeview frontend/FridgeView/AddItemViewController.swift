@@ -76,29 +76,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
         }
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    @IBAction func save(_ sender: AnyObject) {
-        guard let selectedImage = imageTake.image else {
-            print("Image not found!")
-            return
-        }
-        UIImageWriteToSavedPhotosAlbum(selectedImage, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
-    
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            // we got back an error!
-            showAlertWith(title: "Save error", message: error.localizedDescription)
-        } else {
-            showAlertWith(title: "Saved!", message: "Your image has been saved to your photos.")
-        }
-    }
-    
-    func showAlertWith(title: String, message: String){
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
-    }
  
     
     // ___________________
