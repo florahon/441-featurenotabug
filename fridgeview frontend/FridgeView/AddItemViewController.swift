@@ -312,14 +312,20 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
                        mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
                    }
-               }, to: apiUrl, method: .post).response { response in
+               }, to: apiUrl, method: .post).responseJSON { response in
                    if case let .success(items) = response.result {
+                       print(response.result)
                        if let dictionary = items as? [String: Any] {
                            for (key, value) in dictionary {
                                print(key)
                                print(value)
                            }
                        }
+                   }
+                   else{
+                       print(response.result)
+                       print(response.debugDescription)
+                       print("failed")
                    }
                }
            
