@@ -302,15 +302,27 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            return
        }
        imageTake.image = selectedImage
-       let jsonObj = ["receipt": imageTake.image]
+       //let jsonObj = ["receipt": imageTake.image]
        guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
            print("getRecipes: Bad URL")
            return
        }
-       AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON
-       { (result) in
-           debugPrint(result)
-       }
+       
+       AF.upload(multipartFormData: { mpFD in
+           if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
+                       mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
+                   }
+               }, to: apiUrl, method: .post).response { response in
+                   if case let .success(items) = response.result {
+                       if let dictionary = items as? [String: Any] {
+                           for (key, value) in dictionary {
+                               print(key)
+                               print(value)
+                           }
+                       }
+                   }
+               }
+           
        if choice == 0{
            let viewController = ReceiptViewController()
            self.present(viewController, animated: true, completion: nil)
