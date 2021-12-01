@@ -26,10 +26,13 @@ from google.auth.transport import requests
 import hashlib
 import requests
 import environ
+import pyheif
+import whatimage
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/ubuntu/fridge-view-0136dbb3f0c6.json"
 # Create your views here.
 
 def getinventory(request):
@@ -190,41 +193,62 @@ def getrecipes(request):
 
 @csrf_exempt
 def scanreceipt(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=400)
 
-    receipt = request.FILES["receipt"]
-    # receipt = '../static/admin/img/grocery_receipt1'
-
-    # text = pytesseract.image_to_string(Image.open(receipt))
-    text = pytesseract.image_to_string(receipt)
-    pricePattern = r'([0-9]+\.[0-9]+)'
-    # loop over each of the line items in the OCR'd receipt
+    identifier = request.POST['identifier']
     items = []
-    for row in text.split("\n"):
-        # check to see if the price regular expression matches the current
-        # row
-        if re.search(pricePattern, row) is not None:
-            # print(row)
-            split_text = row.split(' ')
-            item = ""
-            for i in range(len(split_text)):
-                if (split_text[i].isalpha() and len(split_text[i]) > 1):
-                    item = (split_text[i])
-            if (len(item) > 0):
-                items.append(item.lower())
-    # Remove the items that involve some total, either 'total' or 'subtotal tax total'
-    # if (len(items) >= 3):
-    #     if ('total' in items[-3]):
-    #         items = items[:-3]
-    #     if ('total' in items[-1]):
-    #         items = items[:-1]
+    text = ""
+    if request.FILES.get("receipt") != None:
+        content = request.FILES['receipt']
+
+        filename = str(time.time()) + ".jpeg"
+        fs = FileSystemStorage()
+        filename = fs.save(filename, content)
+        imageurl = fs.url(filename)
+
+        # i = pyheif.read_heif('/home/ubuntu/441-featurenotabug/fridgeview/media/' + filename)
+
+        # # Convert to other file format like jpeg
+        # s = io.BytesIO()
+        # pi = Image.frombytes(
+        #     mode=i.mode, size=i.size, data=i.data)
+
+        # filename = '../media/' + str(time.time()) + '.jpeg' 
+
+        # pi.save(filename, format="jpeg")
+        img = Image.open('/home/ubuntu/441-featurenotabug/fridgeview/media/' + filename)
+        text = pytesseract.image_to_string(img)
+
+        pricePattern = r'([0-9]+\.[0-9]+)'
+        # loop over each of the line items in the OCR'd receipt
+        
+        for row in text.split("\n"):
+            # check to see if the price regular expression matches the current
+            # row
+            if re.search(pricePattern, row) is not None:
+                # print(row)
+                split_text = row.split(' ')
+                item = ""
+                for i in range(len(split_text)):
+                    if (split_text[i].isalpha() and len(split_text[i]) > 1):
+                        item = (split_text[i])
+                if (len(item) > 0):
+                    items.append(item.lower())
+        # Remove the items that involve some total, either 'total' or 'subtotal tax total'
+        # if (len(items) >= 3):
+        #     if ('total' in items[-3]):
+        #         items = items[:-3]
+        #     if ('total' in items[-1]):
+        #         items = items[:-1]
 
     # Remove non-food items
     # Obtain food_names list from word_net:
     food = wn.synset('food.n.02')
     hypo = lambda s: s.hyponyms()
+    
     food_names = set()
+
     for synset in wn.synsets('food'):
         food_names |= set([b.replace("_", " ").lower() for s in synset.closure(hypo) for b in s.lemma_names()])
     
@@ -234,13 +258,31 @@ def scanreceipt(request):
         if (item.lower() in food_names):
             labels_map[item] += 1
 
-    # Create the response:
-    response = {}
-    for key in labels_map:
-        response[key] = labels_map[key]
+    # Add to database:
+    cursor = connection.cursor()
+    for i in range(len(labels_map.keys())):
+        cursor.execute('INSERT INTO scanned (id, name, value) VALUES '
+                    '(%s, %s, %s);', (identifier, labels_map.keys()[i], labels_map[labels_map.keys()[i]]))
 
-    response = {}
-    response['items'] = items
+    response = {"text": text}
+    return JsonResponse(response)
+
+@csrf_exempt
+def getitems(request):
+    if request.method != 'GET':
+        return HttpResponse(status=400)
+
+    identifier = request.GET['identifier']
+
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM scanned WHERE id=%s;', (identifier,))
+    items = cursor.fetchall()
+
+    # Create the response:
+    response = {"items": {}, "values":{}}
+    for i in range(len(items)):
+        response["items"][str(i)] = items[i][1]
+        response["values"][str(i)] = items[i][2]
 
     return JsonResponse(response)
 
@@ -255,6 +297,15 @@ def scanimage(request):
         ...
     }
     """
+    if request.method != 'POST':
+        return HttpResponse(status=400)
+    identifier = request.POST['identifier']
+
+    labels = []
+
+    food_names = set()
+
+    # return HttpResponse(status=401)
     image_content = request.FILES["image"]
     # Instantiates a client
     client = vision.ImageAnnotatorClient()
@@ -266,7 +317,7 @@ def scanimage(request):
 
     # Performs label detection on the image file
     response = client.label_detection(image=image)
-    labels = response.label_annotations
+    labels += response.label_annotations
 
     # TODO: make sure the label is a food item
     # This is necessary since if the user takes a picture
@@ -276,22 +327,26 @@ def scanimage(request):
     # Obtain food_names list from wordnet
     food = wn.synset('food.n.02')
     hypo = lambda s: s.hyponyms()
-    food_names = set()
+    
     for synset in wn.synsets('food'):
         food_names |= set([b.replace("_", " ").lower() for s in synset.closure(hypo) for b in s.lemma_names()])
 
     # Store the counts of each label
     labels_map = {}
     for label in labels:
-        if (label.lower() in food_names):
-            labels_map[label] += 1
-
-    # Create the response:
-    response = {}
-    for key in labels_map:
-        response[key] = labels_map[key]
-
-    return JsonResponse(response)
+        if (label.description.lower() in food_names):
+            if (label.description not in labels_map.keys()):
+                labels_map[label.description] = 1
+            else:
+                labels_map[label.description] += 1
+    # Add items to the database
+    cursor = connection.cursor()
+    for i in range(len(list(labels_map.keys()))):
+        cursor.execute("INSERT INTO scanned (id, name, quantity) VALUES "
+                    "(%s, %s, %s);", (str(identifier), str(list(labels_map.keys())[i]), labels_map[list(labels_map.keys())[i]]))
+        # cursor.execute("SELECT * FROM scanned;")
+    # response = {"labels": labels_map}
+    return JsonResponse({})
 
 @csrf_exempt
 def adduser(request):

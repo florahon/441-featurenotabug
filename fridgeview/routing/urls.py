@@ -26,5 +26,6 @@ urlpatterns = [
     path('getrecipes/', views.getrecipes, name='getrecipes'),
     path('scanreceipt/', views.scanreceipt, name='scanreceipt'),
     path('scanimage/', views.scanimage, name='scanimage'),
-    path('adduser/', views.adduser, name='adduser')
+    path('adduser/', views.adduser, name='adduser'),
+    path('getitems/', views.getitems, name='getitems'),
 ]
