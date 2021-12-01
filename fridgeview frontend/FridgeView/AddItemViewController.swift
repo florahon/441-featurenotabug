@@ -275,6 +275,8 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            return
        }
        imageTake.image = selectedImage
+       let viewController = ReceiptViewController()
+       self.present(viewController, animated: true, completion: nil)
    }
 }
 

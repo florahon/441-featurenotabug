@@ -23,6 +23,7 @@
 		E32BF84A2751802800CF7B34 /* CheckBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = E32BF8492751802800CF7B34 /* CheckBoxChecked.png */; };
 		E32BF84C2754133400CF7B34 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BF84B2754133400CF7B34 /* RecipeViewController.swift */; };
 		E3406CF82756DA2600CE0D9A /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3406CF72756DA2600CE0D9A /* RecipeCell.swift */; };
+		E3406CFA275701A100CE0D9A /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3406CF9275701A100CE0D9A /* ReceiptViewController.swift */; };
 		E39C7420272C872B00A83CB7 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C741F272C872B00A83CB7 /* AddItemViewController.swift */; };
 		E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C7421272C88A200A83CB7 /* ListViewController.swift */; };
 		E3B66F8F272CA4EC00DF9FD8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */; };
@@ -50,6 +51,7 @@
 		E32BF8492751802800CF7B34 /* CheckBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckBoxChecked.png; sourceTree = "<group>"; };
 		E32BF84B2754133400CF7B34 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		E3406CF72756DA2600CE0D9A /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		E3406CF9275701A100CE0D9A /* ReceiptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		E39C741F272C872B00A83CB7 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		E39C7421272C88A200A83CB7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E3B66F8E272CA4EC00DF9FD8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				E312CC93274DC99100DE8F20 /* SelectItemViewController.swift */,
 				E32BF84B2754133400CF7B34 /* RecipeViewController.swift */,
 				E3406CF72756DA2600CE0D9A /* RecipeCell.swift */,
+				E3406CF9275701A100CE0D9A /* ReceiptViewController.swift */,
 			);
 			path = FridgeView;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				E3041F58272C75BA00990225 /* AppDelegate.swift in Sources */,
 				0ECE8419272F9225008FA06C /* GroceryItem.swift in Sources */,
 				E39C7422272C88A200A83CB7 /* ListViewController.swift in Sources */,
+				E3406CFA275701A100CE0D9A /* ReceiptViewController.swift in Sources */,
 				E312CC94274DC99100DE8F20 /* SelectItemViewController.swift in Sources */,
 				E3041F5A272C75BA00990225 /* SceneDelegate.swift in Sources */,
 			);

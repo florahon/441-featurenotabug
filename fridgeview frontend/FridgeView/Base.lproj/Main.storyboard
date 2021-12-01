@@ -269,15 +269,6 @@
                                 <rect key="frame" x="75" y="369" width="264" height="169"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-Rf-lez">
-                                <rect key="frame" x="117" y="573" width="181" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Save to Photo Gallery"/>
-                                <connections>
-                                    <action selector="save:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="jlk-oq-k1V"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="muZ-6U-b1l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
