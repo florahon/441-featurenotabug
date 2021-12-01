@@ -82,15 +82,6 @@ class RecipeViewController: UITableViewController{
         
         let secondsToDelay = 15.0
         DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
-           print("This message is delayed")
-            print(self.recipes.count)
-            print("RECIPES:")
-            for n in 0..<self.recipes.count{
-                //print("--------------------------")
-                //print(self.recipes[n])
-                //print(self.urls[n])
-                //print("--------------------------")
-            }
             var count = 0
             for n in self.recipeKeys{
                 for i in self.urlKeys{

@@ -1,5 +1,6 @@
 import UIKit
 import UserNotifications
+import Alamofire
 
 class CellClass: UITableViewCell {
     
@@ -19,6 +20,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
     var imagePicker: UIImagePickerController!
     
     var choice = 0
+    let serverUrl = "https://3.131.128.223"
     
     enum ImageSource {
         case photoLibrary
@@ -300,7 +302,15 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            return
        }
        imageTake.image = selectedImage
-       
+       let jsonObj = ["receipt": imageTake.image]
+       guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
+           print("getRecipes: Bad URL")
+           return
+       }
+       AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON
+       { (result) in
+           debugPrint(result)
+       }
        if choice == 0{
            let viewController = ReceiptViewController()
            self.present(viewController, animated: true, completion: nil)
@@ -311,17 +321,6 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        }
        
    }
-    
-    func imagePickerController1(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-        imagePicker.dismiss(animated: true, completion: nil)
-        guard let selectedImage = info[.originalImage] as? UIImage else {
-            print("Image not found!")
-            return
-        }
-        imageTake.image = selectedImage
-        let viewController = CameraItemViewController()
-        self.present(viewController, animated: true, completion: nil)
-    }
 }
 
 
