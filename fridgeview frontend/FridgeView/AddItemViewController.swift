@@ -17,7 +17,9 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageTake: UIImageView!
     var imagePicker: UIImagePickerController!
-
+    
+    var choice = 0
+    
     enum ImageSource {
         case photoLibrary
         case camera
@@ -58,13 +60,13 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
 //    }
 
     @IBAction func takePhoto(_ sender: UIButton) {
+        choice = 0
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             selectImageFrom(.photoLibrary)
             return
         }
         selectImageFrom(.camera)
     }
-    
     func selectImageFrom(_ source: ImageSource){
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
@@ -76,6 +78,29 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
         }
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    @IBAction func takePhoto1(_ sender: UIButton) {
+        choice = 1
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            selectImageFrom(.photoLibrary)
+            return
+        }
+        selectImageFrom(.camera)
+    }
+    
+//    func selectImageFrom1(_ source: ImageSource){
+//        imagePicker =  UIImagePickerController()
+//        imagePicker.delegate = self
+//        switch source {
+//        case .camera:
+//            imagePicker.sourceType = .camera
+//        case .photoLibrary:
+//            imagePicker.sourceType = .photoLibrary
+//        }
+//        present(imagePicker, animated: true, completion: nil)
+//    }
+    
+    
  
     
     // ___________________
@@ -275,10 +300,31 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            return
        }
        imageTake.image = selectedImage
-       let viewController = ReceiptViewController()
-       self.present(viewController, animated: true, completion: nil)
+       
+       if choice == 0{
+           let viewController = ReceiptViewController()
+           self.present(viewController, animated: true, completion: nil)
+       }
+       else if choice == 1{
+           let viewController = CameraItemViewController()
+           self.present(viewController, animated: true, completion: nil)
+       }
+       
    }
+    
+    func imagePickerController1(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            print("Image not found!")
+            return
+        }
+        imageTake.image = selectedImage
+        let viewController = CameraItemViewController()
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
+
+
 
 //extension AddItemViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 //
