@@ -325,7 +325,6 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
                mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
            }
-           if let heifImage = self.imageTake.image?.
            if let identifier = id.data(using: .utf8) {
                mpFD.append(identifier, withName: "identifier")
            }
