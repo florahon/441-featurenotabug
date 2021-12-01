@@ -320,34 +320,45 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        
        let id = randomString(length: 20)
        
+       
        AF.upload(multipartFormData: { mpFD in
            if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
                mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
            }
-           if let id = id.data(using: .utf8) {
-               mpFD.append(id, withName: "identifier")
+           if let heifImage = self.imageTake.image?.
+           if let identifier = id.data(using: .utf8) {
+               mpFD.append(identifier, withName: "identifier")
+           }
+       }, to: apiUrl, method: .post).response { response in
+           switch (response.result) {
+           case .success:
+               print(response.debugDescription)
+               print("postChatt: chatt posted!")
+           case .failure:
+               print("postChatt: posting failed")
            }
            
-       }, to: apiUrl, method: .post).response { response in
-           
        }
-       print("passes post")
-       let jsonObj = ["identifier": id]
-       AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
-           print("gets to here")
-           print(response.debugDescription)
-               if case let .success(items) = response.result {
-                   print(items)
-                   if let dictionary = items as? [String: Any] {
-                       for (key, value) in dictionary {
-                           print(key)
-                           print(value)
+       let secondsToDelay = 10.0
+       DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+           print("passes post")
+           let jsonObj = ["identifier": id]
+           AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+               print("gets to here")
+               print(response.debugDescription)
+                   if case let .success(items) = response.result {
+                       print(items)
+                       if let dictionary = items as? [String: Any] {
+                           for (key, value) in dictionary {
+                               print(key)
+                               print(value)
+                           }
                        }
+                   } else{
+                       print("failed")
                    }
-               } else{
-                   print("failed")
-               }
-               }
+                   }
+       }
        
        
            
