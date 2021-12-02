@@ -8,16 +8,26 @@
 import UIKit
 import Foundation
 
-class CameraItemViewController: UITableViewController, UINavigationControllerDelegate{
+class CameraItemViewController: UITableViewController,
+                                EditVCDelegate{
+    
     
     var items = [Item]()
+    var selection: Item?
     let CellIdentifier = "Cell Identifier"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         
         tableView.delegate = self
+        tableView.dataSource = self
+        
+        let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CameraItemViewController.sendItems(sender:)))
+        
+        navigationItem.rightBarButtonItems = [save]
+        
         
         print("count: ", AddItemViewController.ScannedItems.scanned.count)
         for i in AddItemViewController.ScannedItems.scanned{
@@ -26,14 +36,33 @@ class CameraItemViewController: UITableViewController, UINavigationControllerDel
             print(items)
         }
         self.tableView.reloadData()
-        
-        let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CameraItemViewController.saveItems(sender:)))
-        
-        navigationItem.rightBarButtonItems = [save]
     }
     
-    @objc func saveItems(sender: UIBarButtonItem) {
+    
+    @objc func sendItems(sender: UIBarButtonItem) {
         performSegue(withIdentifier: "ListViewController", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ListViewController" {
+            if let navigationController = segue.destination as? UINavigationController,
+               let listViewController = navigationController.viewControllers.first as? ListViewController {
+                
+            }
+        } else if segue.identifier == "EditViewController" {
+            if let editViewController = segue.destination as? EditViewController, let item = selection {
+                editViewController.delegate = self
+                editViewController.item = item
+            }
+        }
+    }
+    
+    func controller(controller: EditViewController, didUpdateItem item: Item) {
+        if let index = items.index(of: item) {
+                // Update Table View
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+            }
+             
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,6 +72,18 @@ class CameraItemViewController: UITableViewController, UINavigationControllerDel
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        print("edit")
+        // Fetch Item
+        let item = items[indexPath.row]
+         
+        // Update Selection
+        selection = item
+         
+        // Perform Segue
+        performSegue(withIdentifier: "EditViewController", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

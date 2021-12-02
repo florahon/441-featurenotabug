@@ -46,6 +46,7 @@ class RecipeViewController: UITableViewController{
             group.enter()
         DispatchQueue.global().async {
             AF.request(apiUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+                print(response.debugDescription)
                 if case let .success(recipe) = response.result {
                     if let dictionary = recipe as? [String: Any] {
                         for (key, value) in dictionary {

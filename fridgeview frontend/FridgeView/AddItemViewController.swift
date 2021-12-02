@@ -63,15 +63,6 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
 //        button.setTitleColor(.white, for: .normal)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CameraItemViewController" {
-            if let navigationController = segue.destination as? UINavigationController,
-               let cameraItemViewController = navigationController.viewControllers.first as? CameraItemViewController {
-                cameraItemViewController.delegate = self
-            }
-        }
-    }
-    
 //    @IBAction func didTapButton(sender: UIBarButtonItem){
 //        let picker = UIImagePickerController()
 //        picker.sourceType = .camera
@@ -336,6 +327,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            }
            
            let id = randomString(length: 20)
+           print("id: " + id)
            let imgData = imageTake.image!.jpegData(compressionQuality: 1.0)
            
            AF.upload(multipartFormData: { mpFD in
@@ -349,8 +341,6 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                switch (response.result) {
                case .success:
                    print(response.debugDescription)
-                   print(response.request)
-                   print(response.response)
                    print("postChatt: chatt posted!")
                case .failure:
                    print("postChatt: posting failed")
@@ -392,6 +382,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
            }
            
            let id = randomString(length: 20)
+           print("id: " + id)
            let imgData = imageTake.image!.jpegData(compressionQuality: 1.0)
            
            AF.upload(multipartFormData: { mpFD in
@@ -412,12 +403,13 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                }
                
            }
-           let secondsToDelay = 12.0
+           let secondsToDelay = 15.0
            DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
                print("passes post")
                let jsonObj = ["identifier": id]
                AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
                    print(response.debugDescription)
+                   print(response.result)
                    let currentDate = Date()
                                let formatter = DateFormatter()
                                formatter.dateStyle = .short
@@ -442,10 +434,11 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                            print("failed")
                        }
                        }
-               print(ScannedItems.scanned.count)
-               let seconds = 1.0
+               let seconds = 2.0
                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                   self.performSegue(withIdentifier: "CameraItemViewController", sender: self)
+                   print(ScannedItems.scanned.count)
+                   let viewController = CameraItemViewController()
+                   self.present(viewController, animated: true, completion: nil)
                }
            }
            
