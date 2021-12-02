@@ -8,14 +8,32 @@
 import UIKit
 import Foundation
 
-class CameraItemViewController: UITableViewController{
+class CameraItemViewController: UITableViewController, UINavigationControllerDelegate{
     
-    var items = ["example2 CameraItem"]
+    var items = [Item]()
     let CellIdentifier = "Cell Identifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
+        
+        tableView.delegate = self
+        
+        print("count: ", AddItemViewController.ScannedItems.scanned.count)
+        for i in AddItemViewController.ScannedItems.scanned{
+            print("scanned item: " + i.name)
+            items.append(i)
+            print(items)
+        }
+        self.tableView.reloadData()
+        
+        let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CameraItemViewController.saveItems(sender:)))
+        
+        navigationItem.rightBarButtonItems = [save]
+    }
+    
+    @objc func saveItems(sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "ListViewController", sender: self)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,7 +56,7 @@ class CameraItemViewController: UITableViewController{
         //print("recipe: " + usedUrls[indexPath.row])
          
         // Configure Table View Cell
-        cell.textLabel?.text = item
+        cell.textLabel?.text = item.name
          
         return cell
     }

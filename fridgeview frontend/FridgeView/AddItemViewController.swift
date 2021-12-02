@@ -32,6 +32,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
         case camera
     }
     
+    struct ScannedItems{
+        static var scanned = [Item]()
+    }
+    
     @IBOutlet weak var btnSelectCategory: UIButton!
     let transparentView = UIView()
         let tableView = UITableView()
@@ -57,6 +61,15 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
 //        button.backgroundColor = .systemBlue
 //        button.setTitle("Take Picture", for: .normal)
 //        button.setTitleColor(.white, for: .normal)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CameraItemViewController" {
+            if let navigationController = segue.destination as? UINavigationController,
+               let cameraItemViewController = navigationController.viewControllers.first as? CameraItemViewController {
+                cameraItemViewController.delegate = self
+            }
+        }
     }
     
 //    @IBAction func didTapButton(sender: UIBarButtonItem){
@@ -352,10 +365,10 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                    print("gets to here")
                    print(response.debugDescription)
                        if case let .success(items) = response.result {
-                           print(items)
                            if let dictionary = items as? [String: Any] {
                                for (key, value) in dictionary {
-                                   print(key)
+                                   print("key: " + key)
+                                   print("value: ")
                                    print(value)
                                }
                            }
@@ -399,28 +412,43 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                }
                
            }
-           let secondsToDelay = 20.0
+           let secondsToDelay = 12.0
            DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
                print("passes post")
                let jsonObj = ["identifier": id]
                AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
-                   print("gets to here")
                    print(response.debugDescription)
+                   let currentDate = Date()
+                               let formatter = DateFormatter()
+                               formatter.dateStyle = .short
+                   let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                                   let dateString = formatter.string(from:modifiedDate)
                        if case let .success(items) = response.result {
-                           print(items)
                            if let dictionary = items as? [String: Any] {
                                for (key, value) in dictionary {
-                                   print(key)
-                                   print(value)
+                                   if key == "items"{
+                                       if let dict2 = value as? [String: Any] {
+                                           for (key, value) in dict2 {
+                                               print(value)
+                                               let item = Item(name: value as! String, quantity: 1, expr_date: dateString, category: "Other")
+                                               ScannedItems.scanned.append(item)
+                                               print("item name: " + item.name)
+                                           }
+                                       }
+                                   }
                                }
                            }
                        } else{
                            print("failed")
                        }
                        }
+               print(ScannedItems.scanned.count)
+               let seconds = 1.0
+               DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                   self.performSegue(withIdentifier: "CameraItemViewController", sender: self)
+               }
            }
-           let viewController = CameraItemViewController()
-           self.present(viewController, animated: true, completion: nil)
+           
        }
        
    }
