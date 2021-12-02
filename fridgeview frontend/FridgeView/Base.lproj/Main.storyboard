@@ -297,33 +297,27 @@
             </objects>
             <point key="canvasLocation" x="2107" y="-105"/>
         </scene>
-        <!--Camera Item View Controller-->
+        <!--CameraItemViewController-->
         <scene sceneID="DqH-po-vh6">
             <objects>
-                <tableViewController storyboardIdentifier="CameraItemViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dyC-1A-neU" customClass="CameraItemViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CameraItemViewController" title="CameraItemViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dyC-1A-neU" customClass="CameraItemViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="uHA-TJ-Mlc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="hzB-QV-2tb">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="FridgeView" id="N2m-Is-gSh"/>
-                            </items>
-                        </navigationBar>
                         <connections>
                             <outlet property="dataSource" destination="dyC-1A-neU" id="G40-pU-bzP"/>
-                            <outlet property="delegate" destination="dyC-1A-neU" id="nc1-YH-NqI"/>
+                            <outlet property="delegate" destination="dyC-1A-neU" id="PDE-1j-G1X"/>
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="pu1-dD-G7Z"/>
+                    <navigationItem key="navigationItem" title="FridgeView" id="aLq-wB-Qq4"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwR-cl-7cj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="645"/>
+            <point key="canvasLocation" x="2055" y="645"/>
         </scene>
         <!--Inventory List-->
         <scene sceneID="rQ3-3V-pCN">

@@ -45,6 +45,8 @@ class EditViewController: UIViewController {
         quantityTextField.text = "\(item.quantity)"
         expr_dateTextField.text = item.expr_date
     }
+    
+    
      
     @objc func save(sender: UIBarButtonItem) {
         if let name = nTextField.text, let quantityAsString = quantityTextField.text, let quantity = Int(quantityAsString), let expr_date = expr_dateTextField.text {

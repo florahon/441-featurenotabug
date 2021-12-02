@@ -21,9 +21,6 @@ class CameraItemViewController: UITableViewController,
         super.viewDidLoad()
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CameraItemViewController.sendItems(sender:)))
         
         navigationItem.rightBarButtonItems = [save]
@@ -44,15 +41,16 @@ class CameraItemViewController: UITableViewController,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ListViewController" {
-            if let navigationController = segue.destination as? UINavigationController,
-               let listViewController = navigationController.viewControllers.first as? ListViewController {
-                
-            }
-        } else if segue.identifier == "EditViewController" {
+        if segue.identifier == "EditViewController" {
             if let editViewController = segue.destination as? EditViewController, let item = selection {
                 editViewController.delegate = self
                 editViewController.item = item
+            }
+        }
+        else if segue.identifier == "ListViewController" {
+            if let navigationController = segue.destination as? UINavigationController,
+               let listViewController = navigationController.viewControllers.first as? ListViewController {
+                
             }
         }
     }
@@ -63,6 +61,10 @@ class CameraItemViewController: UITableViewController,
             tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
             }
              
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,18 +91,17 @@ class CameraItemViewController: UITableViewController,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Dequeue Reusable Cell
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier, for: indexPath as IndexPath)
+         
         // Fetch Item
         let item = items[indexPath.row]
-        
-
-        //print("item in table view: " + item)
-        //print("recipe: " + usedUrls[indexPath.row])
          
         // Configure Table View Cell
         cell.textLabel?.text = item.name
+        cell.accessoryType = .detailDisclosureButton
          
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
            return 40
     }
