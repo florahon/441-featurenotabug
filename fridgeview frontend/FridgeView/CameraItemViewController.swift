@@ -36,7 +36,6 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
         for i in AddItemViewController.ScannedItems.scanned{
             print("scanned item: " + i.name)
             items.append(i)
-            print(items)
         }
     }
     
@@ -47,7 +46,7 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
         delegate?.controller(controller: self, didUpdateItems: items)
          print("about to segue")
         // Pop View Controller
-        performSegue(withIdentifier: "ListVC", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

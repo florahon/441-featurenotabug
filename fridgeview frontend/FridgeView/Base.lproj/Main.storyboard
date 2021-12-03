@@ -317,7 +317,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="s1V-Dm-Sbl" kind="show" identifier="EditVC" id="7Io-dg-A8h"/>
-                        <segue destination="FOZ-Eh-KT7" kind="show" identifier="ListVC" id="xan-9g-1aM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwR-cl-7cj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -631,7 +630,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="HIy-dk-NSB"/>
-        <segue reference="xan-9g-1aM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ExternalLink" width="66.666664123535156" height="66.666664123535156"/>
