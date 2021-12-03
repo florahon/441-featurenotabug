@@ -6,20 +6,26 @@
 //
 
 import UIKit
-import Foundation
 
-class CameraItemViewController: UITableViewController,
-                                EditVCDelegate{
+protocol CameraItemVCDelegate {
+    func controller(controller: CameraItemViewController, didUpdateItems items: [Item])
+}
+
+class CameraItemViewController: UITableViewController, EditVCDelegate {
     
     
     var items = [Item]()
     var selection: Item?
     let CellIdentifier = "Cell Identifier"
+    var delegate: CameraItemVCDelegate?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CameraItemViewController.sendItems(sender:)))
         
@@ -32,25 +38,25 @@ class CameraItemViewController: UITableViewController,
             items.append(i)
             print(items)
         }
-        self.tableView.reloadData()
     }
     
     
     @objc func sendItems(sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "ListViewController", sender: self)
+        
+        // Notify Delegate
+        delegate?.controller(controller: self, didUpdateItems: items)
+         print("about to segue")
+        // Pop View Controller
+        performSegue(withIdentifier: "ListVC", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EditViewController" {
+        if segue.identifier == "EditVC" {
+            print("gets to here")
             if let editViewController = segue.destination as? EditViewController, let item = selection {
+                print("gets in here")
                 editViewController.delegate = self
                 editViewController.item = item
-            }
-        }
-        else if segue.identifier == "ListViewController" {
-            if let navigationController = segue.destination as? UINavigationController,
-               let listViewController = navigationController.viewControllers.first as? ListViewController {
-                
             }
         }
     }
@@ -85,7 +91,7 @@ class CameraItemViewController: UITableViewController,
         selection = item
          
         // Perform Segue
-        performSegue(withIdentifier: "EditViewController", sender: self)
+        performSegue(withIdentifier: "EditVC", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

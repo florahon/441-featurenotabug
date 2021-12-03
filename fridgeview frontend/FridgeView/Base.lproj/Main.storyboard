@@ -189,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aae-sx-N7i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="645"/>
+            <point key="canvasLocation" x="675" y="658"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="Rci-Ku-c8m">
@@ -291,18 +291,19 @@
                         <outlet property="imageTake" destination="8rT-mj-PZ7" id="Zcu-qE-ppQ"/>
                         <outlet property="nameTextField" destination="AKC-ct-L9d" id="Wh7-Ev-2is"/>
                         <outlet property="quantityTextField" destination="dYy-ye-Xuc" id="nYe-VO-s8d"/>
+                        <segue destination="dyC-1A-neU" kind="show" identifier="CameraVC" id="eaG-QN-qtd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pg-tg-pfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2107" y="-105"/>
         </scene>
-        <!--CameraItemViewController-->
+        <!--Camera Item View Controller-->
         <scene sceneID="DqH-po-vh6">
             <objects>
-                <tableViewController storyboardIdentifier="CameraItemViewController" title="CameraItemViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dyC-1A-neU" customClass="CameraItemViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CameraItemViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dyC-1A-neU" customClass="CameraItemViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="uHA-TJ-Mlc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -311,13 +312,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="FridgeView" id="aLq-wB-Qq4"/>
+                    <navigationItem key="navigationItem" id="aLq-wB-Qq4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="s1V-Dm-Sbl" kind="show" identifier="EditVC" id="7Io-dg-A8h"/>
+                        <segue destination="FOZ-Eh-KT7" kind="show" identifier="ListVC" id="xan-9g-1aM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwR-cl-7cj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="645"/>
+            <point key="canvasLocation" x="1596" y="645"/>
         </scene>
         <!--Inventory List-->
         <scene sceneID="rQ3-3V-pCN">
@@ -624,6 +629,10 @@
             <point key="canvasLocation" x="4450.7246376811599" y="-1008.4821428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="HIy-dk-NSB"/>
+        <segue reference="xan-9g-1aM"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="ExternalLink" width="66.666664123535156" height="66.666664123535156"/>
         <image name="check" width="512" height="512"/>

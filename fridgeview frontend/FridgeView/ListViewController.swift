@@ -16,10 +16,11 @@ class Category {
    }
 }
 
-class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelegate {
+class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelegate, CameraItemVCDelegate {
+    
     
     struct Inventory{
-        static var categories = [Category]()
+        static var categories = [Category(categoryName: "Produce"), Category(categoryName: "Dairy"), Category(categoryName: "Protein"), Category(categoryName: "Other")]
     }
     var selection: Item?
     let CellIdentifier = "Cell Identifier"
@@ -28,11 +29,6 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
-        
-        Inventory.categories.append(Category.init(categoryName: "Produce"))
-        Inventory.categories.append(Category.init(categoryName: "Dairy"))
-        Inventory.categories.append(Category.init(categoryName: "Protein"))
-        Inventory.categories.append(Category.init(categoryName: "Other"))
             
         // Create Add Button
         let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ListViewController.addItem(sender:)))
@@ -55,6 +51,29 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
                 editViewController.item = item
             }
         }
+    }
+    
+    func controller(controller: CameraItemViewController, didUpdateItems items: [Item]) {
+        print("worked")
+        print(items[0].name)
+        var cur_cat = 0
+        var count = 0
+        
+        // Create Item
+        for i in items{
+            for cat in Inventory.categories{
+                if cat.categoryName == i.category{
+                    (cat.item).append(i)
+                    cur_cat = count
+                    tableView.insertRows(at: [IndexPath(row: (Inventory.categories[cur_cat].item.count - 1), section: cur_cat)], with: .automatic)
+                }
+                count = count + 1
+            }
+            
+            count = 0
+        }
+        
+        saveItems()
     }
     
     @objc func addItem(sender: UIBarButtonItem) {
@@ -226,6 +245,7 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         
         saveItems()
     }
+    
 
     /*
      let selectItemViewController =

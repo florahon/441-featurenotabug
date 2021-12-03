@@ -47,6 +47,7 @@ class SelectItemViewController: UIViewController, UITableViewDataSource, UITable
             cur_cat = cur_cat + 1
             count = 0
         }
+        SelectedItems.selected = []
     }
     
     required init?(coder decoder: NSCoder) {
