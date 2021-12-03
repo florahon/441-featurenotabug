@@ -27,10 +27,6 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let save = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(CameraItemViewController.sendItems(sender:)))
-        
-        navigationItem.rightBarButtonItems = [save]
-        
         
         print("count: ", AddItemViewController.ScannedItems.scanned.count)
         for i in AddItemViewController.ScannedItems.scanned{
@@ -40,11 +36,12 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
     }
     
     
-    @objc func sendItems(sender: UIBarButtonItem) {
+    @IBAction func sendItems(sender: UIBarButtonItem) {
         
         // Notify Delegate
         delegate?.controller(controller: self, didUpdateItems: items)
          print("about to segue")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         // Pop View Controller
         dismiss(animated: true, completion: nil)
     }

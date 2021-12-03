@@ -37,6 +37,12 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         let edit = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(ListViewController.editItems(sender:)))
         
         navigationItem.rightBarButtonItems = [add, edit]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        
+        let cameraItemViewController = CameraItemViewController()
+        cameraItemViewController.delegate = self
+            
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +57,28 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
                 editViewController.item = item
             }
         }
+    }
+    
+    @objc func loadList(notification: NSNotification){
+        //load data here
+        var cur_cat = 0
+        var count = 0
+        
+        // Create Item
+        for i in AddItemViewController.ScannedItems.scanned{
+            for cat in Inventory.categories{
+                if cat.categoryName == i.category{
+                    (cat.item).append(i)
+                    cur_cat = count
+                    tableView.insertRows(at: [IndexPath(row: (Inventory.categories[cur_cat].item.count - 1), section: cur_cat)], with: .automatic)
+                }
+                count = count + 1
+            }
+            
+            count = 0
+        }
+        
+        saveItems()
     }
     
     func controller(controller: CameraItemViewController, didUpdateItems items: [Item]) {

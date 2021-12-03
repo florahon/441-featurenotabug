@@ -437,7 +437,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                let seconds = 2.0
                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
                    print(ScannedItems.scanned.count)
-                   dismiss(animated: true, completion: nil)
+                   self.navigationController?.popViewController(animated: true)
                    self.performSegue(withIdentifier: "CameraVC", sender: self)
                }
            }

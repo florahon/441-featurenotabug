@@ -312,7 +312,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="aLq-wB-Qq4"/>
+                    <navigationItem key="navigationItem" id="aLq-wB-Qq4">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="M1z-Ec-wVG">
+                            <connections>
+                                <action selector="sendItemsWithSender:" destination="dyC-1A-neU" id="NYK-0Y-fYb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
