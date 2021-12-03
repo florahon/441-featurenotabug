@@ -313,7 +313,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        imageTake.image = selectedImage
        //let jsonObj = ["receipt": imageTake.image]
        
-       
+       ScannedItems.scanned = []
            
        if choice == 0 {
            guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
