@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -99,6 +99,7 @@
                     <navigationItem key="navigationItem" title="FrigeView" id="H0s-Tm-Dar"/>
                     <connections>
                         <outlet property="imageTake" destination="WSh-pC-fel" id="HVM-xY-Kzh"/>
+                        <segue destination="cS2-tJ-pwB" kind="show" identifier="CameraScanVC" id="laR-62-Rr4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDS-RG-Qeo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -121,7 +122,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wtU-33-Q75" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1684" y="-1019"/>
+            <point key="canvasLocation" x="1951" y="-1145"/>
         </scene>
         <!--FridgeView-->
         <scene sceneID="NiX-SL-STk">
@@ -153,7 +154,7 @@
             <objects>
                 <viewController id="s1V-Dm-Sbl" customClass="EditViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gN9-PT-S72">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qt" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-cs-ee2">
@@ -305,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pg-tg-pfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2107" y="-105"/>
+            <point key="canvasLocation" x="2320" y="214"/>
         </scene>
         <!--Camera Item View Controller-->
         <scene sceneID="DqH-po-vh6">
@@ -336,7 +337,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwR-cl-7cj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="645"/>
+            <point key="canvasLocation" x="1483" y="780"/>
         </scene>
         <!--Inventory List-->
         <scene sceneID="rQ3-3V-pCN">
@@ -580,7 +581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAs-4Z-GlD" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2582.608695652174" y="-1019.1964285714286"/>
+            <point key="canvasLocation" x="2793" y="-1133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qsw-w4-TIc">
@@ -640,11 +641,55 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA0-7Y-UXZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4450.7246376811599" y="-1008.4821428571428"/>
+            <point key="canvasLocation" x="4474" y="-1019"/>
+        </scene>
+        <!--Recipe Scan View Controller-->
+        <scene sceneID="ITG-0W-vNC">
+            <objects>
+                <tableViewController storyboardIdentifier="RecipeScanViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cS2-tJ-pwB" customClass="RecipeScanViewController" customModule="FridgeView" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="TQc-TO-u5b">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecipeCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" id="3PM-lX-Ta1" customClass="RecipeCell" customModule="FridgeView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3PM-lX-Ta1" id="Zm8-5B-gSF">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMh-yc-ZBR">
+                                            <rect key="frame" x="308" y="5" width="61" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="ExternalLink"/>
+                                            <connections>
+                                                <action selector="didTapWithSender:" destination="3PM-lX-Ta1" eventType="touchUpInside" id="rRu-bE-fFT"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="link" destination="IMh-yc-ZBR" id="u8v-wK-wCC"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cS2-tJ-pwB" id="deu-2c-Gqy"/>
+                            <outlet property="delegate" destination="cS2-tJ-pwB" id="BlR-7a-S5G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="fLe-8r-nKh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UB5-SS-O2s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2238" y="-489"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HIy-dk-NSB"/>
+        <segue reference="7Io-dg-A8h"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ExternalLink" width="66.666664123535156" height="66.666664123535156"/>

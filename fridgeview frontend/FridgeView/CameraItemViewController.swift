@@ -33,6 +33,10 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
             print("scanned item: " + i.name)
             items.append(i)
         }
+        
+        let edit = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(CameraItemViewController.editItems(sender:)))
+        
+        navigationItem.leftBarButtonItem = edit
     }
     
     
@@ -44,6 +48,10 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
         // Pop View Controller
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func editItems(sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,6 +71,17 @@ class CameraItemViewController: UITableViewController, EditVCDelegate {
             tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
             }
              
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete Item from Items
+            items.remove(at: indexPath.row)
+             
+            // Update Table View
+            tableView.deleteRows(at: [indexPath], with: .right)
+             
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
