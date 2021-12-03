@@ -27,6 +27,9 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
     var choice = 0
     let serverUrl = "https://3.131.128.223"
     
+    @IBOutlet var spinner: UIActivityIndicatorView!
+    
+    
     enum ImageSource {
         case photoLibrary
         case camera
@@ -88,6 +91,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
             imagePicker.sourceType = .photoLibrary
         }
         present(imagePicker, animated: true, completion: nil)
+        spinner.startAnimating()
     }
     
     @IBAction func takePhoto1(_ sender: UIButton) {
@@ -368,6 +372,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                        }
            }
            let viewController = ReceiptViewController()
+           spinner.stopAnimating()
            self.present(viewController, animated: true, completion: nil)
        }
        else if choice == 1 {
@@ -436,6 +441,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                        }
                let seconds = 2.0
                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                   self.spinner.stopAnimating()
                    print(ScannedItems.scanned.count)
                    self.navigationController?.popViewController(animated: true)
                    self.performSegue(withIdentifier: "CameraVC", sender: self)

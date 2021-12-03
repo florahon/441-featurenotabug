@@ -19,8 +19,13 @@ class RecipeViewController: UITableViewController{
     var recipe_string = ""
     let serverUrl = "https://3.131.128.223"
     
+
+    @IBOutlet var spinner: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        spinner.startAnimating()
+        
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         // Do any additional setup after loading the view.
         var count = 0
@@ -93,7 +98,9 @@ class RecipeViewController: UITableViewController{
                 }
                 count = 0
             }
+            self.spinner.stopAnimating()
             self.tableView.reloadData()
+            
         }
     }
     

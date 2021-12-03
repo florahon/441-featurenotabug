@@ -15,6 +15,8 @@ class CameraRecipeViewController: UIViewController, UINavigationControllerDelega
     @IBOutlet weak var imageTake: UIImageView!
     var imagePicker: UIImagePickerController!
     
+    @IBOutlet var spinner: UIActivityIndicatorView!
+    
     var choice = 0
     let serverUrl = "https://3.131.128.223"
     
@@ -53,6 +55,7 @@ class CameraRecipeViewController: UIViewController, UINavigationControllerDelega
             imagePicker.sourceType = .photoLibrary
         }
         present(imagePicker, animated: true, completion: nil)
+        spinner.startAnimating()
     }
     
     
@@ -136,6 +139,7 @@ extension CameraRecipeViewController: UIImagePickerControllerDelegate{
                        }
                let seconds = 2.0
                DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                   self.spinner.stopAnimating()
                    print(ScannedRecipeItems.scanned.count)
                    self.navigationController?.popViewController(animated: true)
                    self.performSegue(withIdentifier: "CameraScanVC", sender: self)

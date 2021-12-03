@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ktL-H7-QR9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,6 +89,10 @@
                                     <action selector="takePhoto:" destination="zav-gU-ftS" eventType="touchUpInside" id="KmK-QI-4t9"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="23P-AX-x2N">
+                                <rect key="frame" x="181" y="263" width="73" height="92"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7rV-oi-IfC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -99,6 +103,7 @@
                     <navigationItem key="navigationItem" title="FrigeView" id="H0s-Tm-Dar"/>
                     <connections>
                         <outlet property="imageTake" destination="WSh-pC-fel" id="HVM-xY-Kzh"/>
+                        <outlet property="spinner" destination="23P-AX-x2N" id="HIZ-UD-EER"/>
                         <segue destination="cS2-tJ-pwB" kind="show" identifier="CameraScanVC" id="laR-62-Rr4"/>
                     </connections>
                 </viewController>
@@ -267,7 +272,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-mj-PZ7">
-                                <rect key="frame" x="75" y="369" width="264" height="169"/>
+                                <rect key="frame" x="78" y="427" width="264" height="169"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Syd-TZ-FJQ">
@@ -279,6 +284,10 @@
                                     <action selector="takePhoto1:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="jvx-on-fNd"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Vo5-cJ-PzD">
+                                <rect key="frame" x="163" y="338" width="95" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="muZ-6U-b1l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -301,12 +310,13 @@
                         <outlet property="imageTake" destination="8rT-mj-PZ7" id="Zcu-qE-ppQ"/>
                         <outlet property="nameTextField" destination="AKC-ct-L9d" id="Wh7-Ev-2is"/>
                         <outlet property="quantityTextField" destination="dYy-ye-Xuc" id="nYe-VO-s8d"/>
+                        <outlet property="spinner" destination="Vo5-cJ-PzD" id="hz3-2l-Mfn"/>
                         <segue destination="dyC-1A-neU" kind="show" identifier="CameraVC" id="eaG-QN-qtd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pg-tg-pfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2320" y="214"/>
+            <point key="canvasLocation" x="2318.840579710145" y="213.61607142857142"/>
         </scene>
         <!--Camera Item View Controller-->
         <scene sceneID="DqH-po-vh6">
@@ -608,6 +618,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="lQR-g2-GbA">
+                            <rect key="frame" x="0.0" y="110.5" width="414" height="52"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecipeCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" id="qqm-hg-m7v" customClass="RecipeCell" customModule="FridgeView" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -638,10 +652,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZDd-DF-u1V"/>
+                    <connections>
+                        <outlet property="spinner" destination="lQR-g2-GbA" id="FxV-WH-K5c"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xA0-7Y-UXZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4474" y="-1019"/>
+            <point key="canvasLocation" x="4473.913043478261" y="-1019.1964285714286"/>
         </scene>
         <!--Recipe Scan View Controller-->
         <scene sceneID="ITG-0W-vNC">
@@ -651,6 +668,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="Wis-0g-00Y">
+                            <rect key="frame" x="0.0" y="110.5" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="RecipeCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" id="3PM-lX-Ta1" customClass="RecipeCell" customModule="FridgeView" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -682,6 +703,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="fLe-8r-nKh"/>
+                    <connections>
+                        <outlet property="spinner" destination="Wis-0g-00Y" id="7PR-Wf-Hhu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UB5-SS-O2s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
