@@ -39,6 +39,10 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
         static var scanned = [Item]()
     }
     
+    struct ScannedReceipt{
+        static var scanned = [Item]()
+    }
+    
     @IBOutlet weak var btnSelectCategory: UIButton!
     let transparentView = UIView()
         let tableView = UITableView()
@@ -318,6 +322,7 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        //let jsonObj = ["receipt": imageTake.image]
        
        ScannedItems.scanned = []
+       ScannedReceipt.scanned = []
            
        if choice == 0 {
            guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
@@ -351,29 +356,41 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
                }
                
            }
-           let secondsToDelay = 20.0
+           let secondsToDelay = 18.0
            DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
                print("passes post")
                let jsonObj = ["identifier": id]
                AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
                    print("gets to here")
+                   let currentDate = Date()
+                               let formatter = DateFormatter()
+                               formatter.dateStyle = .short
+                   let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                                   let dateString = formatter.string(from:modifiedDate)
                    print(response.debugDescription)
                        if case let .success(items) = response.result {
                            if let dictionary = items as? [String: Any] {
                                for (key, value) in dictionary {
-                                   print("key: " + key)
-                                   print("value: ")
-                                   print(value)
+                                   if let dict2 = value as? [String: String] {
+                                       for (key, value) in dict2 {
+                                           let item = Item(name: value as! String, quantity: 1, expr_date: dateString, category: "Other")
+                                           ScannedReceipt.scanned.append(item)
+                                       }
+                                   }
                                }
                            }
                        } else{
                            print("failed")
                        }
                        }
+               let seconds = 2.0
+               DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                   self.spinner.stopAnimating()
+                   print(ScannedReceipt.scanned.count)
+                   self.navigationController?.popViewController(animated: true)
+                   self.performSegue(withIdentifier: "ReceiptVC", sender: self)
+               }
            }
-           let viewController = ReceiptViewController()
-           spinner.stopAnimating()
-           self.present(viewController, animated: true, completion: nil)
        }
        else if choice == 1 {
            guard let apiUrl = URL(string: serverUrl+"/scanimage/") else {

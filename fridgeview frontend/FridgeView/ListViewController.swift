@@ -40,6 +40,8 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(loadReceipt), name: NSNotification.Name(rawValue: "loadR"), object: nil)
+        
         let cameraItemViewController = CameraItemViewController()
         cameraItemViewController.delegate = self
             
@@ -66,6 +68,28 @@ class ListViewController: UITableViewController, AddItemVCDelegate, EditVCDelega
         
         // Create Item
         for i in AddItemViewController.ScannedItems.scanned{
+            for cat in Inventory.categories{
+                if cat.categoryName == i.category{
+                    (cat.item).append(i)
+                    cur_cat = count
+                    tableView.insertRows(at: [IndexPath(row: (Inventory.categories[cur_cat].item.count - 1), section: cur_cat)], with: .automatic)
+                }
+                count = count + 1
+            }
+            
+            count = 0
+        }
+        
+        saveItems()
+    }
+    
+    @objc func loadReceipt(notification: NSNotification){
+        //load data here
+        var cur_cat = 0
+        var count = 0
+        
+        // Create Item
+        for i in AddItemViewController.ScannedReceipt.scanned{
             for cat in Inventory.categories{
                 if cat.categoryName == i.category{
                     (cat.item).append(i)
