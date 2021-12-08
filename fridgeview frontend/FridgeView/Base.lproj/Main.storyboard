@@ -262,15 +262,6 @@
                                     <action selector="onClickSelectCategory:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="8j5-B4-TPR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3O-pR-5cq">
-                                <rect key="frame" x="107" y="234" width="169" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
-                                <connections>
-                                    <action selector="takePhoto:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="NKQ-W4-6AT"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-mj-PZ7">
                                 <rect key="frame" x="78" y="427" width="264" height="169"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -279,7 +270,7 @@
                                 <rect key="frame" x="117" y="311" width="187" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Access Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
                                 <connections>
                                     <action selector="takePhoto1:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="jvx-on-fNd"/>
                                 </connections>
@@ -288,6 +279,15 @@
                                 <rect key="frame" x="163" y="338" width="95" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3O-pR-5cq">
+                                <rect key="frame" x="123" y="232" width="169" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Access Camera"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="Rmm-YZ-SHT" eventType="touchUpInside" id="NKQ-W4-6AT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="muZ-6U-b1l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
