@@ -1,14 +1,15 @@
 //
-//  RecipeViewController.swift
+//  RecipeScanViewController.swift
 //  FridgeView
 //
-//  Created by Joe Oleszczak on 11/28/21.
+//  Created by Joe Oleszczak on 12/2/21.
 //
+
 import UIKit
 import Foundation
 import Alamofire
 
-class RecipeViewController: UITableViewController{
+class RecipeScanViewController: UITableViewController{
     
     var recipes: [String] = []
     var urls: [String] = []
@@ -19,18 +20,16 @@ class RecipeViewController: UITableViewController{
     var recipe_string = ""
     let serverUrl = "https://3.131.128.223"
     
-
     @IBOutlet var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.startAnimating()
-        
         tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: CellIdentifier)
         // Do any additional setup after loading the view.
         var count = 0
-        print(SelectItemViewController.SelectedItems.selected.count)
-        for s_item in SelectItemViewController.SelectedItems.selected{
+        print(CameraRecipeViewController.ScannedRecipeItems.scanned.count)
+        for s_item in CameraRecipeViewController.ScannedRecipeItems.scanned{
             if count == 0 {
                 recipe_string = s_item.name
             }
@@ -100,7 +99,6 @@ class RecipeViewController: UITableViewController{
             }
             self.spinner.stopAnimating()
             self.tableView.reloadData()
-            
         }
     }
     

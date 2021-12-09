@@ -27,9 +27,20 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
     var choice = 0
     let serverUrl = "https://3.131.128.223"
     
+    @IBOutlet var spinner: UIActivityIndicatorView!
+    
+    
     enum ImageSource {
         case photoLibrary
         case camera
+    }
+    
+    struct ScannedItems{
+        static var scanned = [Item]()
+    }
+    
+    struct ScannedReceipt{
+        static var scanned = [Item]()
     }
     
     @IBOutlet weak var btnSelectCategory: UIButton!
@@ -84,6 +95,7 @@ class AddItemViewController: UIViewController, UINavigationControllerDelegate {
             imagePicker.sourceType = .photoLibrary
         }
         present(imagePicker, animated: true, completion: nil)
+        spinner.startAnimating()
     }
     
     @IBAction func takePhoto1(_ sender: UIButton) {
@@ -308,56 +320,151 @@ extension AddItemViewController: UIImagePickerControllerDelegate{
        }
        imageTake.image = selectedImage
        //let jsonObj = ["receipt": imageTake.image]
-       guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
-           print("postReceipt: Bad URL")
-           return
-       }
        
-       guard let getUrl = URL(string: serverUrl+"/getreceiptitems/") else {
-           print("getReceipt: Bad URL")
-           return
-       }
-       
-       let id = randomString(length: 20)
-       
-       AF.upload(multipartFormData: { mpFD in
-           if let jpegImage = self.imageTake.image?.jpegData(compressionQuality: 1.0) {
-               mpFD.append(jpegImage, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
-           }
-           if let id = id.data(using: .utf8) {
-               mpFD.append(id, withName: "identifier")
-           }
-           
-       }, to: apiUrl, method: .post).response { response in
-           
-       }
-       print("passes post")
-       let jsonObj = ["identifier": id]
-       AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
-           print("gets to here")
-           print(response.debugDescription)
-               if case let .success(items) = response.result {
-                   print(items)
-                   if let dictionary = items as? [String: Any] {
-                       for (key, value) in dictionary {
-                           print(key)
-                           print(value)
-                       }
-                   }
-               } else{
-                   print("failed")
-               }
-               }
-       
-       
+       ScannedItems.scanned = []
+       ScannedReceipt.scanned = []
            
        if choice == 0 {
-           let viewController = ReceiptViewController()
-           self.present(viewController, animated: true, completion: nil)
+           guard let apiUrl = URL(string: serverUrl+"/scanreceipt/") else {
+               print("postReceipt: Bad URL")
+               return
+           }
+           
+           guard let getUrl = URL(string: serverUrl+"/getitems/") else {
+               print("getReceipt: Bad URL")
+               return
+           }
+           
+           let id = randomString(length: 20)
+           print("id: " + id)
+           let imgData = imageTake.image!.jpegData(compressionQuality: 1.0)
+           
+           AF.upload(multipartFormData: { mpFD in
+               if let image = imgData {
+                   mpFD.append(image, withName: "receipt", fileName: "receipt", mimeType: "image/jpeg")
+               }
+               if let identifier = id.data(using: .utf8) {
+                   mpFD.append(identifier, withName: "identifier")
+               }
+           }, to: apiUrl, method: .post).response { response in
+               switch (response.result) {
+               case .success:
+                   print(response.debugDescription)
+                   print("postChatt: chatt posted!")
+               case .failure:
+                   print("postChatt: posting failed")
+               }
+               
+           }
+           let secondsToDelay = 18.0
+           DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+               print("passes post")
+               let jsonObj = ["identifier": id]
+               AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+                   print("gets to here")
+                   let currentDate = Date()
+                               let formatter = DateFormatter()
+                               formatter.dateStyle = .short
+                   let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                                   let dateString = formatter.string(from:modifiedDate)
+                   print(response.debugDescription)
+                       if case let .success(items) = response.result {
+                           if let dictionary = items as? [String: Any] {
+                               for (key, value) in dictionary {
+                                   if let dict2 = value as? [String: String] {
+                                       for (key, value) in dict2 {
+                                           let item = Item(name: value as! String, quantity: 1, expr_date: dateString, category: "Other")
+                                           ScannedReceipt.scanned.append(item)
+                                       }
+                                   }
+                               }
+                           }
+                       } else{
+                           print("failed")
+                       }
+                       }
+               let seconds = 2.0
+               DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                   self.spinner.stopAnimating()
+                   print(ScannedReceipt.scanned.count)
+                   self.navigationController?.popViewController(animated: true)
+                   self.performSegue(withIdentifier: "ReceiptVC", sender: self)
+               }
+           }
        }
        else if choice == 1 {
-           let viewController = CameraItemViewController()
-           self.present(viewController, animated: true, completion: nil)
+           guard let apiUrl = URL(string: serverUrl+"/scanimage/") else {
+               print("postReceipt: Bad URL")
+               return
+           }
+           
+           guard let getUrl = URL(string: serverUrl+"/getitems/") else {
+               print("getReceipt: Bad URL")
+               return
+           }
+           
+           let id = randomString(length: 20)
+           print("id: " + id)
+           let imgData = imageTake.image!.jpegData(compressionQuality: 1.0)
+           
+           AF.upload(multipartFormData: { mpFD in
+               if let image = imgData {
+                   mpFD.append(image, withName: "image", fileName: "image", mimeType: "image/jpeg")
+               }
+               if let identifier = id.data(using: .utf8) {
+                   mpFD.append(identifier, withName: "identifier")
+               }
+           }, to: apiUrl, method: .post).response { response in
+               switch (response.result) {
+               case .success:
+                   print(response.debugDescription)
+                   print(response.error)
+                   print("postChatt: image posted!")
+               case .failure:
+                   print("postChatt: posting failed")
+               }
+               
+           }
+           let secondsToDelay = 15.0
+           DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+               print("passes post")
+               let jsonObj = ["identifier": id]
+               AF.request(getUrl, method: .get, parameters: jsonObj, encoding: URLEncoding.default).responseJSON { response in
+                   print(response.debugDescription)
+                   print(response.result)
+                   let currentDate = Date()
+                               let formatter = DateFormatter()
+                               formatter.dateStyle = .short
+                   let modifiedDate = Calendar.current.date(byAdding: .day, value: 7, to: currentDate)!
+                                   let dateString = formatter.string(from:modifiedDate)
+                       if case let .success(items) = response.result {
+                           if let dictionary = items as? [String: Any] {
+                               for (key, value) in dictionary {
+                                   if key == "items"{
+                                       if let dict2 = value as? [String: Any] {
+                                           for (key, value) in dict2 {
+                                               print(value)
+                                               let item = Item(name: value as! String, quantity: 1, expr_date: dateString, category: "Other")
+                                               ScannedItems.scanned.append(item)
+                                               print("item name: " + item.name)
+                                           }
+                                       }
+                                   }
+                               }
+                           }
+                       } else{
+                           print("failed")
+                       }
+                       }
+               let seconds = 2.0
+               DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                   self.spinner.stopAnimating()
+                   print(ScannedItems.scanned.count)
+                   self.navigationController?.popViewController(animated: true)
+                   self.performSegue(withIdentifier: "CameraVC", sender: self)
+               }
+           }
+           
        }
        
    }
